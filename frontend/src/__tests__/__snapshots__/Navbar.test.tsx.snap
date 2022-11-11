@@ -1,0 +1,169 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test for Navbar 1`] = `
+Array [
+  <div
+    className="sc-bcXHqe Gybjo"
+    height="172px"
+  >
+    <div
+      className="sc-gswNZR egMUqU"
+      style={
+        Object {
+          "minHeight": "173px",
+          "overflowY": "hidden",
+        }
+      }
+    >
+      <div
+        className="sc-dkrFOg icdcLv"
+      >
+        <div
+          className="sc-hLBbgP kFvYYM"
+        >
+          <img
+            className="sc-eDvSVe dIDjLj"
+            src="Logo.svg"
+          />
+          <div>
+            Pikadex
+          </div>
+        </div>
+      </div>
+      <img
+        alt="pikachu"
+        className="pikachu"
+        src="pikachu.svg"
+        style={
+          Object {
+            "display": "block",
+          }
+        }
+      />
+      <div
+        className="sc-iJnaPW cuGxOM"
+        style={
+          Object {
+            "display": "block",
+          }
+        }
+      >
+        <img
+          alt="pikachu"
+          className="pikachu-small"
+          src="pikachu.svg"
+        />
+        <img
+          alt="bulbasaur"
+          className="bulbasaur"
+          src="bulbasaur.svg"
+        />
+        <img
+          alt="charizard"
+          className="charmander"
+          src="charmander.svg"
+        />
+        <img
+          alt="squirtle"
+          className="squirtle"
+          src="squirtle.svg"
+        />
+      </div>
+      <img
+        className="sc-gKPRtg dwhDdR"
+        src="Pokeball.svg"
+      />
+      <div
+        className="sc-iBYQkv jzCrYC"
+      >
+        <div
+          className="sc-ftTHYK bcWsZC"
+        >
+          <div
+            className="filler"
+          />
+          <div
+            className="searchContainer"
+          >
+            <form
+              onSubmit={[Function]}
+            >
+              <input
+                className="searchbar"
+                onChange={[Function]}
+                placeholder="Search by name or index"
+                type="text"
+              />
+            </form>
+            <svg
+              ariaHidden="true"
+              className="searchIcon"
+              fill="currentColor"
+              height={25}
+              onClick={[Function]}
+              stroke="currentColor"
+              strokeWidth="0"
+              style={
+                Object {
+                  "color": undefined,
+                }
+              }
+              viewBox="0 0 24 24"
+              width={25}
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                clipRule="evenodd"
+                d="M10.5 3.75a6.75 6.75 0 100 13.5 6.75 6.75 0 000-13.5zM2.25 10.5a8.25 8.25 0 1114.59 5.28l4.69 4.69a.75.75 0 11-1.06 1.06l-4.69-4.69A8.25 8.25 0 012.25 10.5z"
+                fillRule="evenodd"
+              />
+            </svg>
+          </div>
+          <div
+            className="sc-pyfCe hBdHyt"
+            onClick={[Function]}
+          >
+            <div
+              className="sc-jrcTuL gXuwBj"
+            >
+              <div
+                className="sc-kDvujY bBbyqe"
+              >
+                Surprise me!
+              </div>
+              <img
+                className="sc-ipEyDJ iGiXAa"
+                src="pokeball_icon.svg"
+              />
+            </div>
+          </div>
+        </div>
+        <div
+          className="sc-csuSiG eHinTQ"
+        />
+      </div>
+    </div>
+    <div
+      className="sc-hBxehG YAnpd"
+    >
+      <img
+        className="sc-gikAfH ijcsKr navbarDropdown"
+        onClick={[Function]}
+        src="navbarEdge.svg"
+      />
+    </div>
+  </div>,
+  <img
+    className="sc-ezOQGI dOxhFP"
+    height="70vh"
+    offset="1px"
+    src="leftEdge.svg"
+  />,
+  <img
+    className="sc-bYMpWt ckrZjW"
+    height="70vh"
+    offset="1px"
+    src="rightEdge.svg"
+  />,
+]
+`;

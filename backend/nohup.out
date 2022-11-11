@@ -1,0 +1,86 @@
+node:internal/modules/cjs/loader:959
+  throw err;
+  ^
+
+Error: Cannot find module '@neo4j/graphql'
+Require stack:
+- C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\server.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)
+    at Function.Module._load (node:internal/modules/cjs/loader:804:27)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\server.js:1:26)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\ragna\\Informatikk\\Høst_2022\\IT2810_Webutvikling\\Prosjekt_3\\prosjekt-3\\backend\\server.js'
+  ]
+}
+🚀 Server ready at http://localhost:4000/
+node:internal/modules/cjs/loader:959
+  throw err;
+  ^
+
+Error: Cannot find module '@neo4j/graphql'
+Require stack:
+- C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\server.js
+    at Function.Module._resolveFilename (node:internal/modules/cjs/loader:956:15)
+    at Function.Module._load (node:internal/modules/cjs/loader:804:27)
+    at Module.require (node:internal/modules/cjs/loader:1028:19)
+    at require (node:internal/modules/cjs/helpers:102:18)
+    at Object.<anonymous> (C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\server.js:1:26)
+    at Module._compile (node:internal/modules/cjs/loader:1126:14)
+    at Object.Module._extensions..js (node:internal/modules/cjs/loader:1180:10)
+    at Module.load (node:internal/modules/cjs/loader:1004:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:839:12)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:81:12) {
+  code: 'MODULE_NOT_FOUND',
+  requireStack: [
+    'C:\\Users\\ragna\\Informatikk\\Høst_2022\\IT2810_Webutvikling\\Prosjekt_3\\prosjekt-3\\backend\\server.js'
+  ]
+}
+🚀 Server ready at http://localhost:4000/
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1432:16)
+    at listenInCluster (node:net:1480:12)
+    at Server.listen (node:net:1568:7)
+    at C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\node_modules\apollo-server\dist\index.js:89:29
+    at new Promise (<anonymous>)
+    at ApolloServer.listen (C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\node_modules\apollo-server\dist\index.js:87:15)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1459:8)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}
+node:events:491
+      throw er; // Unhandled 'error' event
+      ^
+
+Error: listen EADDRINUSE: address already in use :::4000
+    at Server.setupListenHandle [as _listen2] (node:net:1432:16)
+    at listenInCluster (node:net:1480:12)
+    at Server.listen (node:net:1568:7)
+    at C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\node_modules\apollo-server\dist\index.js:89:29
+    at new Promise (<anonymous>)
+    at ApolloServer.listen (C:\Users\ragna\Informatikk\Høst_2022\IT2810_Webutvikling\Prosjekt_3\prosjekt-3\backend\node_modules\apollo-server\dist\index.js:87:15)
+Emitted 'error' event on Server instance at:
+    at emitErrorNT (node:net:1459:8)
+    at processTicksAndRejections (node:internal/process/task_queues:83:21) {
+  code: 'EADDRINUSE',
+  errno: -4091,
+  syscall: 'listen',
+  address: '::',
+  port: 4000
+}

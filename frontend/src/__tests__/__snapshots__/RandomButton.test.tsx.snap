@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Snapshot test for Navbar 1`] = `
+<div
+  className="sc-bcXHqe iAxeXF"
+>
+  <img
+    className="sc-gswNZR jHjZRc"
+    src="pokeball.png"
+  />
+</div>
+`;
