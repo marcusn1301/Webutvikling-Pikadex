@@ -69,7 +69,7 @@ export const PageCounter = styled.div`
     gap: 15px;
     transform: translate(-50%);
     align-items: center;
-    color: rgb(50, 50, 50);
+    color: rgb(255, 255, 255);
     z-index: -99999999999999999999;
 
     div {
