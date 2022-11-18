@@ -33,6 +33,7 @@ const MainPage = () => {
     const [filterSearch, setFilterSearch] = useState<boolean>(false);
     const [surpriseMe, setSurpriseMe] = useState<boolean>(false);
     const [sortOrder, setSortOrder] = useState<string>("");
+    const [sortIndexOrder, setSortIndexOrder] = useState<string>("");
 
     const [init, setInit] = useState<boolean>(true);
 
@@ -50,10 +51,10 @@ const MainPage = () => {
     let newList = likedPokemon[0]?.split(",");
 
     // Set the different query variables imported from utils.ts
-    let searchVariables: object = searchVariablesObject(page, searchTerm, sortOrder);
-    let noVariables: object = noVariablesObject(page, sortOrder);
-    let tagVariables: object = tagVariablesObject(page, tags, sortOrder);
-    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm, sortOrder);
+    let searchVariables: object = searchVariablesObject(page, searchTerm, sortOrder, sortIndexOrder);
+    let noVariables: object = noVariablesObject(page, sortOrder, sortIndexOrder);
+    let tagVariables: object = tagVariablesObject(page, tags, sortOrder, sortIndexOrder);
+    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm, sortOrder, sortIndexOrder);
 
     // State for saving the current query variables
     const [variables, setVariables] = useState(searchVariables);
@@ -75,8 +76,8 @@ const MainPage = () => {
             tagVariables,
             noVariables,
             sortOrder,
+            sortIndexOrder,
         });
-        console.log(sortOrder);
     }, [searchTerm, filterSearch]);
 
     const handleSurpriseMe = () => {
@@ -117,6 +118,7 @@ const MainPage = () => {
             tagVariables,
             noVariables,
             sortOrder,
+            sortIndexOrder,
         });
     }, [page]);
 
@@ -136,6 +138,8 @@ const MainPage = () => {
                 setInit={setInit}
                 sortOrder={sortOrder}
                 setSortOrder={setSortOrder}
+                sortIndexOrder={sortIndexOrder}
+                setSortIndexOrder={setSortIndexOrder}
             />
             <PageCounter>
                 <div
