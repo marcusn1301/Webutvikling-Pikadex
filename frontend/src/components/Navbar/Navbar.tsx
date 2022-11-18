@@ -83,13 +83,30 @@ interface NavbarI {
     setSurpriseMe: React.Dispatch<React.SetStateAction<boolean>>;
     init: boolean;
     setInit: React.Dispatch<React.SetStateAction<boolean>>;
+    sortOrder: string;
+    setSortOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFilterSearch, surpriseMe, setSurpriseMe, init, setInit }: NavbarI) => {
+const Navbar = ({
+    searchTerm,
+    setSearchTerm,
+    tags,
+    setTags,
+    filterSearch,
+    setFilterSearch,
+    surpriseMe,
+    setSurpriseMe,
+    init,
+    setInit,
+    sortOrder,
+    setSortOrder,
+}: NavbarI) => {
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
     const [height, setHeight] = useState<string>("172px");
     const [update, setUpdate] = useState<boolean>(false);
     const [searchBarSearch, setSearchBarSearch] = useState("");
+    const [toggleASC, setToggleASC] = useState<boolean>(false);
+    const [toggleDESC, setToggleDESC] = useState<boolean>(false);
 
     let search = "";
 
@@ -162,6 +179,20 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
         setUpdate(!update);
     };
 
+    const handleASC = (toggleASC: boolean) => {
+        setToggleDESC(false);
+        setToggleASC(toggleASC);
+        toggleASC ? setSortOrder("ASC") : setSortOrder("");
+        console.log(toggleASC);
+    };
+
+    const handleDESC = (toggleDESC: boolean) => {
+        setToggleASC(false);
+        setToggleDESC(toggleDESC);
+        toggleDESC ? setSortOrder("DESC") : setSortOrder("");
+        console.log(toggleDESC);
+    };
+
     return (
         <>
             <NavbarOuter transition={small ? true : false} height={checkHeight()}>
@@ -178,7 +209,12 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                         </LogoTextbox>
                     </LogoContainer>
                     {!showDropdown && (
-                        <img src={pikachu} alt="pikachu" className="pikachu" style={{ display: !small || showDropdown ? "block" : "none" }} />
+                        <img
+                            src={pikachu}
+                            alt="pikachu"
+                            className="pikachu"
+                            style={{ display: !small || showDropdown ? "block" : "none" }}
+                        />
                     )}
                     {!showDropdown && (
                         <PokemonContainer style={{ display: !small || showDropdown ? "block" : "none" }}>
@@ -226,7 +262,11 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                 {/*Click on a tag in the filter and display them here*/}
                                 {tags?.map((tag: string, index: number) => {
                                     return (
-                                        <FilterTags background={tag[1]} key={index} onClick={() => removeTag(tag[0], tags)}>
+                                        <FilterTags
+                                            background={tag[1]}
+                                            key={index}
+                                            onClick={() => removeTag(tag[0], tags)}
+                                        >
                                             {tag[0]}
                                         </FilterTags>
                                     );
@@ -246,7 +286,11 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                                 {/* Map over the list of tags with colors and text */}
 
                                                 {list.map((item: Array<string>, index: number) => (
-                                                    <Tag backgroundColor={item[1]} key={index} onClick={() => addTag(item, tags)}>
+                                                    <Tag
+                                                        backgroundColor={item[1]}
+                                                        key={index}
+                                                        onClick={() => addTag(item, tags)}
+                                                    >
                                                         {item[0]}
                                                     </Tag>
                                                 ))}
@@ -257,21 +301,17 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                         <DropdownHeader>Sort By</DropdownHeader>
                                         <SortByBox>
                                             <SortTag
-                                            /* onClick={() =>
-                                                    setSortBy({
-                                                        options: {
-                                                            sort: [
-                                                                {
-                                                                    name: "DESC",
-                                                                },
-                                                            ],
-                                                        },
-                                                    })
-                                                } */
+                                                onClick={() => handleASC(!toggleASC)}
+                                                style={{ backgroundColor: toggleASC ? "rgb(20, 20, 20)" : "" }}
                                             >
                                                 A - Z
                                             </SortTag>
-                                            <SortTag>Z - A</SortTag>
+                                            <SortTag
+                                                onClick={() => handleDESC(!toggleDESC)}
+                                                style={{ backgroundColor: toggleDESC ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                Z - A
+                                            </SortTag>
                                             <SortTag>Lowest No.</SortTag>
                                             <SortTag>Highest No.</SortTag>
                                             <SortTag style={{}}>Favorites</SortTag>
