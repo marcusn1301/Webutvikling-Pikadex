@@ -52,24 +52,24 @@ import bulbasaur from "../../assets/Navbar/pokemon/bulbasaur.svg";
 
 //Retrieved from https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3
 const list = [
-    ["normal", "#A8A77A"],
-    ["fire", "#EE8130"],
-    ["water", "#6390F0"],
-    ["electric", "#F7D02C"],
-    ["grass", "#7AC74C"],
-    ["ice", "#96D9D6"],
-    ["fighting", "#C22E28"],
-    ["poison", "#A33EA1"],
-    ["ground", "#E2BF65"],
-    ["flying", "#A98FF3"],
-    ["psychic", "#F95587"],
-    ["bug", "#A6B91A"],
-    ["rock", "#B6A136"],
-    ["ghost", "#735797"],
-    ["dragon", "#6F35FC"],
-    ["dark", "#705746"],
-    ["steel", "#B7B7CE"],
-    ["fairy", "#D685AD"],
+    ["normal", "#A8A77A", "notPicked"],
+    ["fire", "#EE8130", "notPicked"],
+    ["water", "#6390F0", "notPicked"],
+    ["electric", "#F7D02C", "notPicked"],
+    ["grass", "#7AC74C", "notPicked"],
+    ["ice", "#96D9D6", "notPicked"],
+    ["fighting", "#C22E28", "notPicked"],
+    ["poison", "#A33EA1", "notPicked"],
+    ["ground", "#E2BF65", "notPicked"],
+    ["flying", "#A98FF3", "notPicked"],
+    ["psychic", "#F95587", "notPicked"],
+    ["bug", "#A6B91A", "notPicked"],
+    ["rock", "#B6A136", "notPicked"],
+    ["ghost", "#735797", "notPicked"],
+    ["dragon", "#6F35FC", "notPicked"],
+    ["dark", "#705746", "notPicked"],
+    ["steel", "#B7B7CE", "notPicked"],
+    ["fairy", "#D685AD", "notPicked"],
 ];
 
 interface NavbarI {
@@ -90,6 +90,7 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
     const [height, setHeight] = useState<string>("172px");
     const [update, setUpdate] = useState<boolean>(false);
     const [searchBarSearch, setSearchBarSearch] = useState("");
+    const [colorList, setColorList] = useState<Array<Array<string>>>(list);
 
     let search = "";
 
@@ -137,12 +138,25 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
         setShowDropdown(false);
     };
 
-    const addTag = (tag: Array<string>, tagList: Array<Array<string>>) => {
+    const addTag = (tag: Array<string>, tagList: Array<Array<string>>, index: number) => {
+        // If the tag is already in the list, dont add it
+        if (tagList.includes(tag)) {
+            return;
+        }
+
         if (tagList.length >= 2) {
+            colorList.map((color: Array<string>) => {
+                if (color[0] === tagList[tagList.length - 1][1]) {
+                    color[2] = "notPicked";
+                    colorList[index][2] = "notPicked";
+                }
+            });
+
             tagList.pop();
             tagList.unshift(tag);
         } else {
             tagList.push(tag);
+            colorList[index][2] = "picked";
         }
 
         // Sets the tags as state stored in Homepage.tsx component
@@ -159,6 +173,12 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
 
         setTags(filteredTags);
         setUpdate(!update);
+
+        colorList.map((color: Array<string>) => {
+            if (color[0] === tagTerm) {
+                color[2] = "notPicked";
+            }
+        });
     };
 
     const handleReset = () => {
@@ -252,8 +272,13 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                             <TagGrid>
                                                 {/* Map over the list of tags with colors and text */}
 
-                                                {list.map((item: Array<string>, index: number) => (
-                                                    <Tag backgroundColor={item[1]} key={index} onClick={() => addTag(item, tags)}>
+                                                {colorList.map((item: Array<string>, index: number) => (
+                                                    <Tag
+                                                        backgroundColor={item[1]}
+                                                        style={{ border: item[2] === "picked" ? "2px solid black" : "2px solid transparent" }}
+                                                        key={index}
+                                                        onClick={() => addTag(item, tags, index)}
+                                                    >
                                                         {item[0]}
                                                     </Tag>
                                                 ))}
@@ -263,21 +288,7 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                     <DropdownGridRow>
                                         <DropdownHeader>Sort By</DropdownHeader>
                                         <SortByBox>
-                                            <SortTag
-                                            /* onClick={() =>
-                                                    setSortBy({
-                                                        options: {
-                                                            sort: [
-                                                                {
-                                                                    name: "DESC",
-                                                                },
-                                                            ],
-                                                        },
-                                                    })
-                                                } */
-                                            >
-                                                A - Z
-                                            </SortTag>
+                                            <SortTag>A - Z</SortTag>
                                             <SortTag>Z - A</SortTag>
                                             <SortTag>Lowest No.</SortTag>
                                             <SortTag>Highest No.</SortTag>
