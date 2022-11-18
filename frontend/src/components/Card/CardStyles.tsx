@@ -133,6 +133,10 @@ export const CardExpandContainer = styled.div<CardContainerI>`
         }
     }
 
+    @media (max-height: 650px) {
+        top: 200px;
+    }
+
     animation: 0.3s ease-out 0s 1 slideInFromLeft;
 `;
 
