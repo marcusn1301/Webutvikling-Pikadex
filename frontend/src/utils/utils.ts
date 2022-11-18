@@ -1,33 +1,4 @@
-interface handleSurpriseMeI {
-    page: number;
-    setVariables: (variables: any) => void;
-    setMode: any;
-    POKEMON_SURPRISE_ME: any;
-}
-
-export const handleSurpriseMe = ({ page, setVariables, setMode, POKEMON_SURPRISE_ME }: handleSurpriseMeI) => {
-    let fetchAmount = 20;
-    const randIntList = [];
-
-    for (let i = 0; i < fetchAmount; i++) {
-        let randInt = Math.floor(Math.random() * 801);
-        randIntList.push(randInt);
-    }
-
-    let surpriseMeVariables: object = {
-        variables: {
-            options: {
-                offset: 20 * page,
-                limit: 20,
-            },
-            where: {
-                id_IN: randIntList,
-            },
-        },
-    };
-    setVariables(surpriseMeVariables);
-    setMode(POKEMON_SURPRISE_ME);
-};
+import { decideWhichQueryToUseI } from "../types/types";
 
 export const searchVariablesObject = (page: number, searchTerm: string) => {
     return {
@@ -110,18 +81,6 @@ export const surpriseMeVariablesObject = (randIntList: Array<number>, page: numb
         },
     };
 };
-
-interface decideWhichQueryToUseI {
-    tags: Array<Array<string>>;
-    searchTerm: string;
-    setVariables: React.Dispatch<React.SetStateAction<object>>;
-    setMode: React.Dispatch<React.SetStateAction<string | any>>;
-    searchAndTagVariables: object;
-    QUERY_POKEMON: string | any;
-    searchVariables: object;
-    tagVariables: object;
-    noVariables: object;
-}
 
 // Based on which options are chosen by the user, find out which query to use
 export const decideWhichQueryToUse = ({
