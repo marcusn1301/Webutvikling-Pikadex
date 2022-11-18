@@ -85,6 +85,8 @@ interface NavbarI {
     setInit: React.Dispatch<React.SetStateAction<boolean>>;
     sortOrder: string;
     setSortOrder: React.Dispatch<React.SetStateAction<string>>;
+    sortIndexOrder: string;
+    setSortIndexOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Navbar = ({
@@ -100,6 +102,8 @@ const Navbar = ({
     setInit,
     sortOrder,
     setSortOrder,
+    sortIndexOrder,
+    setSortIndexOrder,
 }: NavbarI) => {
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
     const [height, setHeight] = useState<string>("172px");
@@ -107,6 +111,8 @@ const Navbar = ({
     const [searchBarSearch, setSearchBarSearch] = useState("");
     const [toggleASC, setToggleASC] = useState<boolean>(false);
     const [toggleDESC, setToggleDESC] = useState<boolean>(false);
+    const [toggleIndexASC, setToggleIndexASC] = useState<boolean>(false);
+    const [toggleIndexDESC, setToggleIndexDESC] = useState<boolean>(false);
 
     let search = "";
 
@@ -179,18 +185,62 @@ const Navbar = ({
         setUpdate(!update);
     };
 
+    //Toggles the value for the A-Z tag. If toggled to true, the sortOrder will be set to ASC on name.
     const handleASC = (toggleASC: boolean) => {
         setToggleDESC(false);
+        setToggleIndexASC(false);
+        setToggleIndexDESC(false);
+
         setToggleASC(toggleASC);
-        toggleASC ? setSortOrder("ASC") : setSortOrder("");
-        console.log(toggleASC);
+        if (toggleASC) {
+            setSortOrder("ASC");
+            setSortIndexOrder("");
+        } else {
+            setSortOrder("");
+        }
     };
 
+    //Toggles the value for the Z-A tag. If toggled to true, the sortOrder will be set to DESC on name.
     const handleDESC = (toggleDESC: boolean) => {
         setToggleASC(false);
+        setToggleIndexASC(false);
+        setToggleIndexDESC(false);
+
         setToggleDESC(toggleDESC);
-        toggleDESC ? setSortOrder("DESC") : setSortOrder("");
-        console.log(toggleDESC);
+        if (toggleDESC) {
+            setSortOrder("DESC");
+            setSortIndexOrder("");
+        } else {
+            setSortOrder("");
+        }
+    };
+
+    const handleIndexASC = (toggleIndexASC: boolean) => {
+        setToggleIndexDESC(false);
+        setToggleASC(false);
+        setToggleDESC(false);
+
+        setToggleIndexASC(toggleIndexASC);
+        if (toggleIndexASC) {
+            setSortIndexOrder("ASC");
+            setSortOrder("");
+        } else {
+            setSortIndexOrder("");
+        }
+    };
+
+    const handleIndexDESC = (toggleIndexDESC: boolean) => {
+        setToggleIndexASC(false);
+        setToggleASC(false);
+        setToggleDESC(false);
+
+        setToggleIndexDESC(toggleIndexDESC);
+        if (toggleIndexDESC) {
+            setSortIndexOrder("DESC");
+            setSortOrder("");
+        } else {
+            setSortIndexOrder("");
+        }
     };
 
     return (
@@ -312,8 +362,18 @@ const Navbar = ({
                                             >
                                                 Z - A
                                             </SortTag>
-                                            <SortTag>Lowest No.</SortTag>
-                                            <SortTag>Highest No.</SortTag>
+                                            <SortTag
+                                                onClick={() => handleIndexASC(!toggleIndexASC)}
+                                                style={{ backgroundColor: toggleIndexASC ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                Lowest No.
+                                            </SortTag>
+                                            <SortTag
+                                                onClick={() => handleIndexDESC(!toggleIndexDESC)}
+                                                style={{ backgroundColor: toggleIndexDESC ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                Highest No.
+                                            </SortTag>
                                             <SortTag style={{}}>Favorites</SortTag>
                                         </SortByBox>
                                     </DropdownGridRow>
