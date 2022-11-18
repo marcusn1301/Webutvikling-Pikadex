@@ -8,4 +8,5 @@ export interface decideWhichQueryToUseI {
     searchVariables: object;
     tagVariables: object;
     noVariables: object;
+    sortOrder: string;
 }
