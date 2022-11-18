@@ -32,6 +32,7 @@ const MainPage = () => {
     const [tags, setTags] = useState<Array<Array<string>>>([]);
     const [filterSearch, setFilterSearch] = useState<boolean>(false);
     const [surpriseMe, setSurpriseMe] = useState<boolean>(false);
+    const [sortOrder, setSortOrder] = useState<string>("");
 
     const [init, setInit] = useState<boolean>(true);
 
@@ -49,10 +50,10 @@ const MainPage = () => {
     let newList = likedPokemon[0]?.split(",");
 
     // Set the different query variables imported from utils.ts
-    let searchVariables: object = searchVariablesObject(page, searchTerm);
-    let noVariables: object = noVariablesObject(page);
-    let tagVariables: object = tagVariablesObject(page, tags);
-    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm);
+    let searchVariables: object = searchVariablesObject(page, searchTerm, sortOrder);
+    let noVariables: object = noVariablesObject(page, sortOrder);
+    let tagVariables: object = tagVariablesObject(page, tags, sortOrder);
+    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm, sortOrder);
 
     // State for saving the current query variables
     const [variables, setVariables] = useState(searchVariables);
@@ -73,7 +74,9 @@ const MainPage = () => {
             searchVariables,
             tagVariables,
             noVariables,
+            sortOrder,
         });
+        console.log(sortOrder);
     }, [searchTerm, filterSearch]);
 
     const handleSurpriseMe = () => {
@@ -113,6 +116,7 @@ const MainPage = () => {
             searchVariables,
             tagVariables,
             noVariables,
+            sortOrder,
         });
     }, [page]);
 
@@ -130,13 +134,21 @@ const MainPage = () => {
                 setSurpriseMe={setSurpriseMe}
                 init={init}
                 setInit={setInit}
+                sortOrder={sortOrder}
+                setSortOrder={setSortOrder}
             />
             <PageCounter>
-                <div style={{ visibility: page === 0 ? "hidden" : "visible" }} onClick={() => setPage(page > 0 ? page - 1 : 0)}>
+                <div
+                    style={{ visibility: page === 0 ? "hidden" : "visible" }}
+                    onClick={() => setPage(page > 0 ? page - 1 : 0)}
+                >
                     &lt;
                 </div>
                 Page {page + 1}
-                <div style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }} onClick={() => setPage((page) => (page += 1))}>
+                <div
+                    style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
+                    onClick={() => setPage((page) => (page += 1))}
+                >
                     &gt;
                 </div>
             </PageCounter>
