@@ -180,6 +180,8 @@ export const SearchOuter = styled.div`
 
     &:hover {
       cursor: pointer;
+      background-color: rgb(200,200,200);
+
     }
     /* display: flex; */
     /* align-items: center; */
@@ -262,6 +264,7 @@ export const PokeballBoxSurpriseMe = styled.div`
   gap: 5px;
   &:hover {
     cursor: pointer;
+    background-color: rgba(255, 255, 255, 0.3);
   }
   @media (max-width: 950px) {
     background-color: transparent;
@@ -619,6 +622,7 @@ export const NavbarEdge = styled.img`
 
   &:hover {
     cursor: pointer;
+    filter: invert(7.5%)
   }
 
   @media (min-width: 600px) {
