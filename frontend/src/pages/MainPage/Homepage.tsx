@@ -34,6 +34,7 @@ const MainPage = () => {
     const [surpriseMe, setSurpriseMe] = useState<boolean>(false);
     const [sortOrder, setSortOrder] = useState<string>("");
     const [sortIndexOrder, setSortIndexOrder] = useState<string>("");
+    const [sortFavorited, setSortFavorited] = useState<string>("");
 
     const [init, setInit] = useState<boolean>(true);
 
@@ -51,10 +52,17 @@ const MainPage = () => {
     let newList = likedPokemon[0]?.split(",");
 
     // Set the different query variables imported from utils.ts
-    let searchVariables: object = searchVariablesObject(page, searchTerm, sortOrder, sortIndexOrder);
-    let noVariables: object = noVariablesObject(page, sortOrder, sortIndexOrder);
-    let tagVariables: object = tagVariablesObject(page, tags, sortOrder, sortIndexOrder);
-    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm, sortOrder, sortIndexOrder);
+    let searchVariables: object = searchVariablesObject(page, searchTerm, sortOrder, sortIndexOrder, sortFavorited);
+    let noVariables: object = noVariablesObject(page, sortOrder, sortIndexOrder, sortFavorited);
+    let tagVariables: object = tagVariablesObject(page, tags, sortOrder, sortIndexOrder, sortFavorited);
+    let searchAndTagVariables = searchAndTagVariablesObject(
+        page,
+        tags,
+        searchTerm,
+        sortOrder,
+        sortIndexOrder,
+        sortFavorited
+    );
 
     // State for saving the current query variables
     const [variables, setVariables] = useState(searchVariables);
@@ -77,6 +85,7 @@ const MainPage = () => {
             noVariables,
             sortOrder,
             sortIndexOrder,
+            sortFavorited,
         });
     }, [searchTerm, filterSearch]);
 
@@ -119,6 +128,7 @@ const MainPage = () => {
             noVariables,
             sortOrder,
             sortIndexOrder,
+            sortFavorited,
         });
     }, [page]);
 
@@ -140,6 +150,8 @@ const MainPage = () => {
                 setSortOrder={setSortOrder}
                 sortIndexOrder={sortIndexOrder}
                 setSortIndexOrder={setSortIndexOrder}
+                sortFavorited={sortFavorited}
+                setSortFavorited={setSortFavorited}
             />
             <PageCounter>
                 <div

@@ -10,4 +10,5 @@ export interface decideWhichQueryToUseI {
     noVariables: object;
     sortOrder: string;
     sortIndexOrder: string;
+    sortFavorited: string;
 }

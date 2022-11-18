@@ -87,6 +87,8 @@ interface NavbarI {
     setSortOrder: React.Dispatch<React.SetStateAction<string>>;
     sortIndexOrder: string;
     setSortIndexOrder: React.Dispatch<React.SetStateAction<string>>;
+    sortFavorited: string;
+    setSortFavorited: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const Navbar = ({
@@ -104,6 +106,8 @@ const Navbar = ({
     setSortOrder,
     sortIndexOrder,
     setSortIndexOrder,
+    sortFavorited,
+    setSortFavorited,
 }: NavbarI) => {
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
     const [height, setHeight] = useState<string>("172px");
@@ -114,6 +118,7 @@ const Navbar = ({
     const [toggleIndexASC, setToggleIndexASC] = useState<boolean>(false);
     const [toggleIndexDESC, setToggleIndexDESC] = useState<boolean>(false);
     const [colorList, setColorList] = useState<Array<Array<string>>>(list);
+    const [toggleFavorited, setToggleFavorited] = useState<boolean>(false);
 
     let search = "";
 
@@ -217,11 +222,13 @@ const Navbar = ({
         setToggleDESC(false);
         setToggleIndexASC(false);
         setToggleIndexDESC(false);
+        setToggleFavorited(false);
 
         setToggleASC(toggleASC);
         if (toggleASC) {
             setSortOrder("ASC");
             setSortIndexOrder("");
+            setSortFavorited("");
         } else {
             setSortOrder("");
         }
@@ -232,41 +239,66 @@ const Navbar = ({
         setToggleASC(false);
         setToggleIndexASC(false);
         setToggleIndexDESC(false);
+        setToggleFavorited(false);
 
         setToggleDESC(toggleDESC);
         if (toggleDESC) {
             setSortOrder("DESC");
             setSortIndexOrder("");
+            setSortFavorited("");
         } else {
             setSortOrder("");
         }
     };
 
+    //Handles the sort-values for the "Lowest No."-tag
     const handleIndexASC = (toggleIndexASC: boolean) => {
         setToggleIndexDESC(false);
         setToggleASC(false);
         setToggleDESC(false);
+        setToggleFavorited(false);
 
         setToggleIndexASC(toggleIndexASC);
         if (toggleIndexASC) {
             setSortIndexOrder("ASC");
             setSortOrder("");
+            setSortFavorited("");
         } else {
             setSortIndexOrder("");
         }
     };
 
+    //Handles the sort-values for the "Highest No."-tag
     const handleIndexDESC = (toggleIndexDESC: boolean) => {
         setToggleIndexASC(false);
         setToggleASC(false);
         setToggleDESC(false);
+        setToggleFavorited(false);
 
         setToggleIndexDESC(toggleIndexDESC);
         if (toggleIndexDESC) {
             setSortIndexOrder("DESC");
             setSortOrder("");
+            setSortFavorited("");
         } else {
             setSortIndexOrder("");
+        }
+    };
+
+    //Handles the sort-values for the "Most favorited"-tag
+    const handleFavorited = (toggleFavorited: boolean) => {
+        setToggleIndexASC(false);
+        setToggleIndexDESC(false);
+        setToggleASC(false);
+        setToggleDESC(false);
+
+        setToggleFavorited(toggleFavorited);
+        if (toggleFavorited) {
+            setSortFavorited("DESC");
+            setSortOrder("");
+            setSortIndexOrder("");
+        } else {
+            setSortFavorited("");
         }
     };
 
@@ -407,7 +439,12 @@ const Navbar = ({
                                             >
                                                 Highest No.
                                             </SortTag>
-                                            <SortTag style={{}}>Favorites</SortTag>
+                                            <SortTag
+                                                onClick={() => handleFavorited(!toggleFavorited)}
+                                                style={{ backgroundColor: toggleFavorited ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                Most favorited
+                                            </SortTag>
                                         </SortByBox>
                                     </DropdownGridRow>
                                     <DropdownGridRow>

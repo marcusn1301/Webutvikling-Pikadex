@@ -3,7 +3,7 @@ import { decideWhichQueryToUseI } from "../types/types";
 //The queries below take in the page number and use it to calculate the offset. The sortOrder is for sorting on names, and the 
 //sortIndexOrder is used for sorting on the pokemon-ID. Checks if one of the variables is an empty string
 //and use the one that is not empty. If both are empty, sort is set to null.
-export const searchVariablesObject = (page: number, searchTerm: string, sortOrder: string, sortIndexOrder: string) => {
+export const searchVariablesObject = (page: number, searchTerm: string, sortOrder: string, sortIndexOrder: string, sortFavorited: string) => {
     return {
         variables: {
             options: {
@@ -17,6 +17,10 @@ export const searchVariablesObject = (page: number, searchTerm: string, sortOrde
                 [
                     {
                         id: sortIndexOrder
+                    }
+                ] : sortFavorited != "" ? [
+                    {
+                        favorited: sortFavorited
                     }
                 ] : null
             },
@@ -27,7 +31,7 @@ export const searchVariablesObject = (page: number, searchTerm: string, sortOrde
     };
 };
 
-export const noVariablesObject = (page: number, sortOrder: string, sortIndexOrder: string) => {
+export const noVariablesObject = (page: number, sortOrder: string, sortIndexOrder: string, sortFavorited: string) => {
     return {
         variables: {
             options: {
@@ -42,13 +46,17 @@ export const noVariablesObject = (page: number, sortOrder: string, sortIndexOrde
                     {
                         id: sortIndexOrder
                     }
+                ] : sortFavorited != "" ? [
+                    {
+                        favorited: sortFavorited
+                    }
                 ] : null
             },
         },
     };
 };
 
-export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sortOrder: string, sortIndexOrder: string) => {
+export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sortOrder: string, sortIndexOrder: string, sortFavorited: string) => {
     return {
         variables: {
             where: {
@@ -71,13 +79,17 @@ export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sor
                     {
                         id: sortIndexOrder
                     }
+                ] : sortFavorited != "" ? [
+                    {
+                        favorited: sortFavorited
+                    }
                 ] : null
             },
         },
     };
 };
 
-export const searchAndTagVariablesObject = (page: number, tags: Array<Array<string>>, searchTerm: string, sortOrder: string, sortIndexOrder: string) => {
+export const searchAndTagVariablesObject = (page: number, tags: Array<Array<string>>, searchTerm: string, sortOrder: string, sortIndexOrder: string, sortFavorited: string) => {
     return {
         variables: {
             options: {
@@ -91,6 +103,10 @@ export const searchAndTagVariablesObject = (page: number, tags: Array<Array<stri
                 [
                     {
                         id: sortIndexOrder
+                    }
+                ] : sortFavorited != "" ? [
+                    {
+                        favorited: sortFavorited
                     }
                 ] : null
             },
