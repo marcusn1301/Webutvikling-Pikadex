@@ -215,6 +215,14 @@ const Navbar = ({
         setFilterSearch(!filterSearch);
         setSearchBarSearch("");
         setShowDropdown(false);
+        setSortFavorited("");
+        setSortIndexOrder("");
+        setSortOrder("");
+        setToggleASC(false);
+        setToggleDESC(false);
+        setToggleIndexASC(false);
+        setToggleIndexDESC(false);
+        setToggleFavorited(false);
     };
 
     //Toggles the value for the A-Z tag. If toggled to true, the sortOrder will be set to ASC on name.
