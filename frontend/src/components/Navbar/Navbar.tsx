@@ -83,13 +83,36 @@ interface NavbarI {
     setSurpriseMe: React.Dispatch<React.SetStateAction<boolean>>;
     init: boolean;
     setInit: React.Dispatch<React.SetStateAction<boolean>>;
+    sortOrder: string;
+    setSortOrder: React.Dispatch<React.SetStateAction<string>>;
+    sortIndexOrder: string;
+    setSortIndexOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFilterSearch, surpriseMe, setSurpriseMe, init, setInit }: NavbarI) => {
+const Navbar = ({
+    searchTerm,
+    setSearchTerm,
+    tags,
+    setTags,
+    filterSearch,
+    setFilterSearch,
+    surpriseMe,
+    setSurpriseMe,
+    init,
+    setInit,
+    sortOrder,
+    setSortOrder,
+    sortIndexOrder,
+    setSortIndexOrder,
+}: NavbarI) => {
     const [showDropdown, setShowDropdown] = useState<boolean>(false);
     const [height, setHeight] = useState<string>("172px");
     const [update, setUpdate] = useState<boolean>(false);
     const [searchBarSearch, setSearchBarSearch] = useState("");
+    const [toggleASC, setToggleASC] = useState<boolean>(false);
+    const [toggleDESC, setToggleDESC] = useState<boolean>(false);
+    const [toggleIndexASC, setToggleIndexASC] = useState<boolean>(false);
+    const [toggleIndexDESC, setToggleIndexDESC] = useState<boolean>(false);
     const [colorList, setColorList] = useState<Array<Array<string>>>(list);
 
     let search = "";
@@ -189,6 +212,64 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
         setShowDropdown(false);
     };
 
+    //Toggles the value for the A-Z tag. If toggled to true, the sortOrder will be set to ASC on name.
+    const handleASC = (toggleASC: boolean) => {
+        setToggleDESC(false);
+        setToggleIndexASC(false);
+        setToggleIndexDESC(false);
+
+        setToggleASC(toggleASC);
+        if (toggleASC) {
+            setSortOrder("ASC");
+            setSortIndexOrder("");
+        } else {
+            setSortOrder("");
+        }
+    };
+
+    //Toggles the value for the Z-A tag. If toggled to true, the sortOrder will be set to DESC on name.
+    const handleDESC = (toggleDESC: boolean) => {
+        setToggleASC(false);
+        setToggleIndexASC(false);
+        setToggleIndexDESC(false);
+
+        setToggleDESC(toggleDESC);
+        if (toggleDESC) {
+            setSortOrder("DESC");
+            setSortIndexOrder("");
+        } else {
+            setSortOrder("");
+        }
+    };
+
+    const handleIndexASC = (toggleIndexASC: boolean) => {
+        setToggleIndexDESC(false);
+        setToggleASC(false);
+        setToggleDESC(false);
+
+        setToggleIndexASC(toggleIndexASC);
+        if (toggleIndexASC) {
+            setSortIndexOrder("ASC");
+            setSortOrder("");
+        } else {
+            setSortIndexOrder("");
+        }
+    };
+
+    const handleIndexDESC = (toggleIndexDESC: boolean) => {
+        setToggleIndexASC(false);
+        setToggleASC(false);
+        setToggleDESC(false);
+
+        setToggleIndexDESC(toggleIndexDESC);
+        if (toggleIndexDESC) {
+            setSortIndexOrder("DESC");
+            setSortOrder("");
+        } else {
+            setSortIndexOrder("");
+        }
+    };
+
     return (
         <>
             <NavbarOuter transition={small ? true : false} height={checkHeight()}>
@@ -205,7 +286,12 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                         </LogoTextbox>
                     </LogoContainer>
                     {!showDropdown && (
-                        <img src={pikachu} alt="pikachu" className="pikachu" style={{ display: !small || showDropdown ? "block" : "none" }} />
+                        <img
+                            src={pikachu}
+                            alt="pikachu"
+                            className="pikachu"
+                            style={{ display: !small || showDropdown ? "block" : "none" }}
+                        />
                     )}
                     {!showDropdown && (
                         <PokemonContainer style={{ display: !small || showDropdown ? "block" : "none" }}>
@@ -253,7 +339,11 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                 {/*Click on a tag in the filter and display them here*/}
                                 {tags?.map((tag: string, index: number) => {
                                     return (
-                                        <FilterTags background={tag[1]} key={index} onClick={() => removeTag(tag[0], tags)}>
+                                        <FilterTags
+                                            background={tag[1]}
+                                            key={index}
+                                            onClick={() => removeTag(tag[0], tags)}
+                                        >
                                             {tag[0]}
                                         </FilterTags>
                                     );
@@ -275,7 +365,12 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                                 {colorList.map((item: Array<string>, index: number) => (
                                                     <Tag
                                                         backgroundColor={item[1]}
-                                                        style={{ border: item[2] === "picked" ? "2px solid black" : "2px solid transparent" }}
+                                                        style={{
+                                                            border:
+                                                                item[2] === "picked"
+                                                                    ? "2px solid black"
+                                                                    : "2px solid transparent",
+                                                        }}
                                                         key={index}
                                                         onClick={() => addTag(item, tags, index)}
                                                     >
@@ -288,10 +383,30 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                     <DropdownGridRow>
                                         <DropdownHeader>Sort By</DropdownHeader>
                                         <SortByBox>
-                                            <SortTag>A - Z</SortTag>
-                                            <SortTag>Z - A</SortTag>
-                                            <SortTag>Lowest No.</SortTag>
-                                            <SortTag>Highest No.</SortTag>
+                                            <SortTag
+                                                onClick={() => handleASC(!toggleASC)}
+                                                style={{ backgroundColor: toggleASC ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                A - Z
+                                            </SortTag>
+                                            <SortTag
+                                                onClick={() => handleDESC(!toggleDESC)}
+                                                style={{ backgroundColor: toggleDESC ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                Z - A
+                                            </SortTag>
+                                            <SortTag
+                                                onClick={() => handleIndexASC(!toggleIndexASC)}
+                                                style={{ backgroundColor: toggleIndexASC ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                Lowest No.
+                                            </SortTag>
+                                            <SortTag
+                                                onClick={() => handleIndexDESC(!toggleIndexDESC)}
+                                                style={{ backgroundColor: toggleIndexDESC ? "rgb(20, 20, 20)" : "" }}
+                                            >
+                                                Highest No.
+                                            </SortTag>
                                             <SortTag style={{}}>Favorites</SortTag>
                                         </SortByBox>
                                     </DropdownGridRow>
