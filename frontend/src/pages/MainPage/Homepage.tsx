@@ -172,7 +172,7 @@ const MainPage = () => {
                 {data?.pokemon?.length === 0 && (
                     <SadPika>
                         <img src={sadPikaGIF} alt="sad pika :(" />
-                        <div>No more Pokemon :(</div>
+                        <div style={{ color: "white" }}>No more Pokemon :(</div>
                     </SadPika>
                 )}
                 {data?.pokemon?.map((pokemon: any, index: number) => {
