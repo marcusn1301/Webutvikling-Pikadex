@@ -320,7 +320,7 @@ const Navbar = ({
                     }}
                 >
                     <LogoContainer>
-                        <LogoTextbox>
+                        <LogoTextbox onClick={() => handleReset()}>
                             <Logo src={logo} />
                             <div>Pikadex</div>
                         </LogoTextbox>
