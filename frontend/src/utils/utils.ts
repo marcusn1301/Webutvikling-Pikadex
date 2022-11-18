@@ -1,11 +1,16 @@
 import { decideWhichQueryToUseI } from "../types/types";
 
-export const searchVariablesObject = (page: number, searchTerm: string) => {
+export const searchVariablesObject = (page: number, searchTerm: string, sortOrder: string) => {
     return {
         variables: {
             options: {
                 offset: 20 * page,
                 limit: 20,
+                sort: sortOrder == "" ? null : [
+                    {
+                        name: sortOrder
+                    },
+                ],
             },
             where: {
                 name_CONTAINS: searchTerm,
@@ -14,18 +19,23 @@ export const searchVariablesObject = (page: number, searchTerm: string) => {
     };
 };
 
-export const noVariablesObject = (page: number) => {
+export const noVariablesObject = (page: number, sortOrder: string) => {
     return {
         variables: {
             options: {
                 offset: 20 * page,
                 limit: 20,
+                sort: sortOrder == "" ? null : [
+                    {
+                        name: sortOrder
+                    },
+                ],
             },
         },
     };
 };
 
-export const tagVariablesObject = (page: number, tags: Array<Array<string>>) => {
+export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sortOrder: string) => {
     return {
         variables: {
             where: {
@@ -39,17 +49,27 @@ export const tagVariablesObject = (page: number, tags: Array<Array<string>>) => 
             options: {
                 offset: 20 * page,
                 limit: 20,
+                sort: sortOrder == "" ? null : [
+                    {
+                        name: sortOrder
+                    },
+                ],
             },
         },
     };
 };
 
-export const searchAndTagVariablesObject = (page: number, tags: Array<Array<string>>, searchTerm: string) => {
+export const searchAndTagVariablesObject = (page: number, tags: Array<Array<string>>, searchTerm: string, sortOrder: string) => {
     return {
         variables: {
             options: {
                 offset: 20 * page,
                 limit: 20,
+                sort: sortOrder == "" ? null : [
+                    {
+                        name: sortOrder
+                    },
+                ],
             },
             where: {
                 type_1_IN: tags[0],
