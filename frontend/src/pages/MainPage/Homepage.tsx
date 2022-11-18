@@ -1,139 +1,34 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Card from "../../components/Card/Card";
 
-// import SearchBox from "../../components/SearchBox/SearchBox";
-import leftEdge from "../../assets/pageEdges/leftEdge.svg";
-import rightEdge from "../../assets/pageEdges/rightEdge.svg";
 import footerEdge from "../../assets/pageEdges/footerEdge.svg";
 import up from "../../assets/icons/up.svg";
-
-import styled from "styled-components";
-import { useScroll } from "../../hooks/useScroll";
-
-import { useQuery, gql, ApolloClient, InMemoryCache, ApolloProvider, useLazyQuery } from "@apollo/client";
-
-import { CardGrid, FooterEdge, PageCounter, SadPika, UpButton } from "./HomepageStyles";
 import Loading from "../../components/Loading/Loading";
-
 import sadPikaGIF from "../../assets/gifs/sadpika.gif";
 
-const QUERY_POKEMON_CACHE = gql`
-    query Pokemon($options: PokemonOptions, $where: PokemonWhere) {
-        pokemon(options: $options, where: $where) {
-            species_id
-            sprite_url
-            base_experience
-            name
-            weight
-            id
-            is_default
-            order_id
-            height
-            type_1
-            type_2
-            favorited
-        }
-    }
-`;
+import { useQuery } from "@apollo/client";
+import { QUERY_POKEMON } from "../../GraphQL/queries";
+import {
+    noVariablesObject,
+    searchVariablesObject,
+    tagVariablesObject,
+    searchAndTagVariablesObject,
+    surpriseMeVariablesObject,
+    decideWhichQueryToUse,
+} from "../../utils/utils";
 
-const POKEMON_SEARCH_BY_NAME = gql`
-    query Pokemon($options: PokemonOptions, $where: PokemonWhere) {
-        pokemon(options: $options, where: $where) {
-            species_id
-            sprite_url
-            base_experience
-            name
-            weight
-            id
-            is_default
-            order_id
-            height
-            type_1
-            type_2
-            favorited
-        }
-    }
-`;
-
-const POKEMON_FILTER_TAGS = gql`
-    query Pokemon($options: PokemonOptions, $where: PokemonWhere) {
-        pokemon(options: $options, where: $where) {
-            species_id
-            sprite_url
-            base_experience
-            name
-            weight
-            id
-            is_default
-            order_id
-            height
-            type_1
-            type_2
-            favorited
-        }
-    }
-`;
-
-const POKEMON_SEARCH_TAG_AND_NAME = gql`
-    query Pokemon($options: PokemonOptions, $where: PokemonWhere) {
-        pokemon(options: $options, where: $where) {
-            species_id
-            sprite_url
-            base_experience
-            name
-            weight
-            id
-            is_default
-            order_id
-            height
-            type_1
-            type_2
-            favorited
-        }
-    }
-`;
-
-const POKEMON_SURPRISE_ME = gql`
-    query Pokemon($options: PokemonOptions, $where: PokemonWhere) {
-        pokemon(options: $options, where: $where) {
-            species_id
-            sprite_url
-            base_experience
-            name
-            weight
-            id
-            is_default
-            order_id
-            height
-            type_1
-            type_2
-            favorited
-        }
-    }
-`;
+import { CardGrid, FooterEdge, PageCounter, SadPika, UpButton } from "./HomepageStyles";
 
 type Dispatch<A> = (value: A) => void;
-
-interface PokemonI {
-    sprite_url: string;
-    id: number;
-    name: string;
-    type_1: string;
-    type_2: string;
-    height: number;
-    weight: number;
-    base_experience: number;
-    favorited: number;
-}
 
 const MainPage = () => {
     const [searchTerm, setSearchTerm] = useState<string>("");
     const [toggleClick, setToggleClick] = useState<boolean>(true);
 
     // Decides which gql query to use
-    const [mode, setMode] = useState(QUERY_POKEMON_CACHE);
+    const [mode, setMode] = useState(QUERY_POKEMON);
     const [tags, setTags] = useState<Array<Array<string>>>([]);
     const [filterSearch, setFilterSearch] = useState<boolean>(false);
     const [surpriseMe, setSurpriseMe] = useState<boolean>(false);
@@ -153,90 +48,32 @@ const MainPage = () => {
     let likedPokemon: Array<string | null | any> = [localStorage?.getItem("addedToFavorites")];
     let newList = likedPokemon[0]?.split(",");
 
-    let searchVariables: object = {
-        variables: {
-            options: {
-                offset: 20 * page,
-                limit: 20,
-            },
-            where: {
-                name_CONTAINS: searchTerm,
-            },
-        },
-    };
-    let noVariables: object = {
-        variables: {
-            options: {
-                offset: 20 * page,
-                limit: 20,
-            },
-        },
-    };
+    // Set the different query variables imported from utils.ts
+    let searchVariables: object = searchVariablesObject(page, searchTerm.toLowerCase());
+    let noVariables: object = noVariablesObject(page);
+    let tagVariables: object = tagVariablesObject(page, tags);
+    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm.toLowerCase());
 
-    let tagVariables: object = {
-        variables: {
-            where: {
-                type_1_IN: tags[0],
-                OR: [
-                    {
-                        type_2_IN: tags[1],
-                    },
-                ],
-            },
-            options: {
-                offset: 20 * page,
-                limit: 20,
-            },
-        },
-    };
-
-    let searchAndTagVariables: object = {
-        variables: {
-            options: {
-                offset: 20 * page,
-                limit: 20,
-            },
-            where: {
-                type_1_IN: tags[0],
-                OR: [
-                    {
-                        type_2_IN: tags[1],
-                    },
-                ],
-                AND: [
-                    {
-                        name_CONTAINS: searchTerm,
-                    },
-                ],
-            },
-        },
-    };
-
+    // State for saving the current query variables
     const [variables, setVariables] = useState(searchVariables);
 
     // creates a data object with all the pokemon from the query
     let { data, loading } = useQuery(mode, variables);
 
-    const decideWhichQueryToUse = () => {
-        if (tags.length > 0 && searchTerm.length > 0) {
-            setVariables(searchAndTagVariables);
-            setMode(POKEMON_SEARCH_TAG_AND_NAME);
-        } else if (searchTerm.length > 0 && tags.length === 0) {
-            setVariables(searchVariables);
-            setMode(POKEMON_SEARCH_BY_NAME);
-        } else if (tags.length > 0) {
-            setVariables(tagVariables);
-            setMode(POKEMON_FILTER_TAGS);
-        } else {
-            setVariables(noVariables);
-            setMode(QUERY_POKEMON_CACHE);
-        }
-    };
-
     // When the user clicks on search, set the mode to the search term
     useEffect(() => {
         setPage(0);
-        decideWhichQueryToUse();
+        decideWhichQueryToUse({
+            tags,
+            searchTerm,
+            setVariables,
+            setMode,
+            searchAndTagVariables,
+            QUERY_POKEMON,
+            searchVariables,
+            tagVariables,
+            noVariables,
+        });
     }, [searchTerm, filterSearch]);
 
     const handleSurpriseMe = () => {
@@ -248,21 +85,12 @@ const MainPage = () => {
             randIntList.push(randInt);
         }
 
-        let surpriseMeVariables: object = {
-            variables: {
-                options: {
-                    offset: 20 * page,
-                    limit: 20,
-                },
-                where: {
-                    id_IN: randIntList,
-                },
-            },
-        };
+        let surpriseMeVariables: object = surpriseMeVariablesObject(randIntList, page);
         setVariables(surpriseMeVariables);
-        setMode(POKEMON_SURPRISE_ME);
+        setMode(QUERY_POKEMON);
     };
 
+    // Whenthe user clicks on the surprise me button, set the page number to 0
     useEffect(() => {
         setPage(0);
 
@@ -275,7 +103,17 @@ const MainPage = () => {
     }, [surpriseMe]);
 
     useEffect(() => {
-        decideWhichQueryToUse();
+        decideWhichQueryToUse({
+            tags,
+            searchTerm,
+            setVariables,
+            setMode,
+            searchAndTagVariables,
+            QUERY_POKEMON,
+            searchVariables,
+            tagVariables,
+            noVariables,
+        });
     }, [page]);
 
     return (

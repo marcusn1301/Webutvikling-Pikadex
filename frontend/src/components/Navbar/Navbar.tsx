@@ -134,7 +134,6 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
         e.preventDefault();
         setSearchTerm(searchBarSearch);
         setFilterSearch(!filterSearch);
-        setSearchBarSearch("");
         setShowDropdown(false);
     };
 
@@ -160,6 +159,14 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
 
         setTags(filteredTags);
         setUpdate(!update);
+    };
+
+    const handleReset = () => {
+        setTags([]);
+        setSearchTerm("");
+        setFilterSearch(!filterSearch);
+        setSearchBarSearch("");
+        setShowDropdown(false);
     };
 
     return (
@@ -280,7 +287,7 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                     <DropdownGridRow>
                                         <ButtonsContainer>
                                             <ButtonOuter>
-                                                <ResetBtn>Reset</ResetBtn>
+                                                <ResetBtn onClick={handleReset}>Reset</ResetBtn>
                                                 <form onSubmit={handleSubmit} className="formButton">
                                                     <SearchBtn type="submit">Filter</SearchBtn>
                                                 </form>
