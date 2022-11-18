@@ -1,16 +1,24 @@
 import { decideWhichQueryToUseI } from "../types/types";
 
-export const searchVariablesObject = (page: number, searchTerm: string, sortOrder: string) => {
+//The queries below take in the page number and use it to calculate the offset. The sortOrder is for sorting on names, and the 
+//sortIndexOrder is used for sorting on the pokemon-ID. Checks if one of the variables is an empty string
+//and use the one that is not empty. If both are empty, sort is set to null.
+export const searchVariablesObject = (page: number, searchTerm: string, sortOrder: string, sortIndexOrder: string) => {
     return {
         variables: {
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder == "" ? null : [
+                sort: sortOrder != "" && sortIndexOrder == "" ? [
                     {
                         name: sortOrder
                     },
-                ],
+                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                [
+                    {
+                        id: sortIndexOrder
+                    }
+                ] : null
             },
             where: {
                 name_CONTAINS: searchTerm,
@@ -19,23 +27,28 @@ export const searchVariablesObject = (page: number, searchTerm: string, sortOrde
     };
 };
 
-export const noVariablesObject = (page: number, sortOrder: string) => {
+export const noVariablesObject = (page: number, sortOrder: string, sortIndexOrder: string) => {
     return {
         variables: {
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder == "" ? null : [
+                sort: sortOrder != "" && sortIndexOrder == "" ? [
                     {
                         name: sortOrder
                     },
-                ],
+                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                [
+                    {
+                        id: sortIndexOrder
+                    }
+                ] : null
             },
         },
     };
 };
 
-export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sortOrder: string) => {
+export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sortOrder: string, sortIndexOrder: string) => {
     return {
         variables: {
             where: {
@@ -49,27 +62,37 @@ export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sor
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder == "" ? null : [
+                sort: sortOrder != "" && sortIndexOrder == "" ? [
                     {
                         name: sortOrder
                     },
-                ],
+                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                [
+                    {
+                        id: sortIndexOrder
+                    }
+                ] : null
             },
         },
     };
 };
 
-export const searchAndTagVariablesObject = (page: number, tags: Array<Array<string>>, searchTerm: string, sortOrder: string) => {
+export const searchAndTagVariablesObject = (page: number, tags: Array<Array<string>>, searchTerm: string, sortOrder: string, sortIndexOrder: string) => {
     return {
         variables: {
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder == "" ? null : [
+                sort: sortOrder != "" && sortIndexOrder == "" ? [
                     {
                         name: sortOrder
                     },
-                ],
+                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                [
+                    {
+                        id: sortIndexOrder
+                    }
+                ] : null
             },
             where: {
                 type_1_IN: tags[0],
