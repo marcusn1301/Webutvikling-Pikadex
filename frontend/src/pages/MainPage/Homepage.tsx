@@ -7,6 +7,7 @@ import footerEdge from "../../assets/pageEdges/footerEdge.svg";
 import up from "../../assets/icons/up.svg";
 import Loading from "../../components/Loading/Loading";
 import sadPikaGIF from "../../assets/gifs/sadpika.gif";
+import pikachuTrans from "../../assets/gifs/pikachu-transparent.png";
 
 import { useQuery } from "@apollo/client";
 import { QUERY_POKEMON } from "../../GraphQL/queries";
@@ -163,7 +164,7 @@ const MainPage = () => {
         {data?.pokemon?.length === 0 && (
           <SadPika>
             <img src={sadPikaGIF} alt="sad pika :(" />
-            <div>No more Pokemon :</div>
+            <div>No more Pokémon</div>
           </SadPika>
         )}
         {data?.pokemon?.map((pokemon: any, index: number) => {
