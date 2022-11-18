@@ -49,10 +49,10 @@ const MainPage = () => {
     let newList = likedPokemon[0]?.split(",");
 
     // Set the different query variables imported from utils.ts
-    let searchVariables: object = searchVariablesObject(page, searchTerm);
+    let searchVariables: object = searchVariablesObject(page, searchTerm.toLowerCase());
     let noVariables: object = noVariablesObject(page);
     let tagVariables: object = tagVariablesObject(page, tags);
-    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm);
+    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm.toLowerCase());
 
     // State for saving the current query variables
     const [variables, setVariables] = useState(searchVariables);
