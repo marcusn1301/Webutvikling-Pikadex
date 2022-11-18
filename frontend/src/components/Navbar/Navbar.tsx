@@ -460,7 +460,7 @@ const Navbar = ({
                                             <ButtonOuter>
                                                 <ResetBtn onClick={handleReset}>Reset</ResetBtn>
                                                 <form onSubmit={handleSubmit} className="formButton">
-                                                    <SearchBtn type="submit">Filter</SearchBtn>
+                                                    <SearchBtn type="submit">Search</SearchBtn>
                                                 </form>
                                             </ButtonOuter>
                                         </ButtonsContainer>
