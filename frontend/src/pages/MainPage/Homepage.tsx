@@ -9,7 +9,7 @@ import Loading from "../../components/Loading/Loading";
 import sadPikaGIF from "../../assets/gifs/sadpika.gif";
 
 import { useQuery } from "@apollo/client";
-import { QUERY_POKEMON } from "../../gql/queries";
+import { QUERY_POKEMON } from "../../GraphQL/queries";
 import {
     noVariablesObject,
     searchVariablesObject,
