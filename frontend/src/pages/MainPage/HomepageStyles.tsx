@@ -49,6 +49,7 @@ export const UpButton = styled.div`
 
     &:hover {
         cursor: pointer;
+        background-color: rgb(245, 0, 0);
     }
 `;
 
@@ -82,6 +83,7 @@ export const PageCounter = styled.div`
 
         &:hover {
             cursor: pointer;
+            color: rgb(200,200,200);
         }
     }
 `;

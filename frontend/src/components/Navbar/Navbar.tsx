@@ -282,7 +282,7 @@ const Navbar = ({ searchTerm, setSearchTerm, tags, setTags, filterSearch, setFil
                                             <ButtonOuter>
                                                 <ResetBtn>Reset</ResetBtn>
                                                 <form onSubmit={handleSubmit} className="formButton">
-                                                    <SearchBtn type="submit">Search</SearchBtn>
+                                                    <SearchBtn type="submit">Filter</SearchBtn>
                                                 </form>
                                             </ButtonOuter>
                                         </ButtonsContainer>
