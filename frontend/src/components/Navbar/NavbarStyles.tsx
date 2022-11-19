@@ -344,11 +344,11 @@ interface TagI {
 
 //Type tag such as Water, Bug, Fire, etc.
 export const Tag = styled.div<TagI>`
-    color: #ffffff;
+    color: #000000;
     transition: 0.1s;
     padding: 2px 3px 2px 3px;
     background-color: ${(props) => props.backgroundColor};
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1px;
     display: flex; //Center text within tag
     align-items: center;
@@ -356,7 +356,6 @@ export const Tag = styled.div<TagI>`
     border-radius: 10px;
     &:hover {
         cursor: pointer;
-        opacity: 0.85;
     }
 `;
 
@@ -365,12 +364,12 @@ interface FilterTagsI {
 }
 
 export const FilterTags = styled.div<FilterTagsI>`
-    color: #ffffff;
+    color: #000000;
     padding: 2px 3px 2px 3px;
     transition: 0.1s;
 
     background-color: ${(props) => props.background};
-    font-weight: 600;
+    font-weight: 500;
     letter-spacing: 1px;
     display: flex; //Center text within tag
     align-items: center;
