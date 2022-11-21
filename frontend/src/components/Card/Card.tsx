@@ -200,7 +200,7 @@ const Card = ({
                             </PokeIndex>
                         </IndexOuterBg>
                     </IndexOuter>
-                    <InformationBg>
+                    <InformationBg backgroundColor={handleTypeColor()}>
                         <InformationContainer className="infoContainer" backgroundColor={handleTypeColor()}>
                             <div>
                                 <img className="imageContainer" src={img} alt={name} />
