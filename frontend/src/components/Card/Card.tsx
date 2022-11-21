@@ -144,11 +144,32 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
         }
     };
 
+    // Handles enter on card
+    const handleKeyDownCard = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            handlePopup(true);
+        }
+    };
+
+    //Handle enter on back
+    const handleKeyDownCardBack = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            handleRemovePopup(false);
+        }
+    };
+
+    // Handle enter on star
+    const handleKeyDownCardStar = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            console.log("i tried")
+        }
+    };
+
     return (
         <>
             {!isExpanded ? (
-                <CardContainer className="cardContainer" onClick={() => handlePopup(!isExpanded)} backgroundColor={handleTypeColor()}>
-                    <PokeIndex className="pokeIndex" backgroundColor={handleTypeColor()}>
+                <CardContainer tabIndex={0} onKeyDown={handleKeyDownCard} className="cardContainer" onClick={() => handlePopup(!isExpanded)} backgroundColor={handleTypeColor()}>
+                    <PokeIndex aria-label={checkIndex(index)} className="pokeIndex" backgroundColor={handleTypeColor()}>
                         {checkIndex(index)}
                     </PokeIndex>
                     <InformationContainer className="infoContainer">
@@ -156,11 +177,13 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                             <img className="imageContainer" src={img} alt={name} />
                         </div>
                     </InformationContainer>
-                    <Tags className="tags">
+                    <Tags aria-label={"Types for " + name}
+                        className="tags">
                         {types.map((type: string, index: number) => {
                             if (type !== null) {
                                 return (
-                                    <Tag backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]} key={index}>
+                                    <Tag aria-label={type}
+                                        backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]} key={index}>
                                         {type.charAt(0).toUpperCase() + type.slice(1)}
                                     </Tag>
                                 );
@@ -176,7 +199,7 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                 <CardExpandContainer className="expandendCardContainer" backgroundColor={handleTypeColor()}>
                     <IndexRow backgroundColor={handleTypeColor()}>
                         <BackButtonContainer>
-                            <IoArrowBackCircle size={45} className="arrowBack" onClick={() => handleRemovePopup(!isExpanded)} />
+                            <IoArrowBackCircle tabIndex={0} size={45} className="arrowBack" onKeyDown={handleKeyDownCardBack} onClick={() => handleRemovePopup(!isExpanded)} />
                         </BackButtonContainer>
                         <PokeIndex backgroundColor={handleTypeColor()} style={{ color: "#000000" }}>
                             {checkIndex(index)}
@@ -209,6 +232,7 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                         <NameTagExpanded>{name.charAt(0).toUpperCase() + name.slice(1)}</NameTagExpanded>
                         <StarContainer>
                             <AiFillStar
+                                tabIndex={0}
                                 className="star"
                                 size={30}
                                 onClick={() => handleFavorites(index, favorited)}

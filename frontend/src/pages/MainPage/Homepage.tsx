@@ -133,6 +133,31 @@ const MainPage = () => {
         });
     }, [page]);
 
+    //Handles enter press to top
+   const handleKeyDownUp= (event: { keyCode: number; }) => {
+    if (event.keyCode === 13) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      })
+    }
+  };
+
+  // Handles enter in page ->
+  const handleKeyDownForward= (event: { keyCode: number; }) => {
+    if (event.keyCode === 13) {
+      setPage((page) => (page += 1))
+    
+    }
+  };
+
+  // Handles enter in page <-
+  const handleKeyDownBack= (event: { keyCode: number; }) => {
+    if (event.keyCode === 13) {
+      setPage(page > 0 ? page - 1 : 0)
+    }
+  };
+
     return (
         <>
             {loading && <Loading />}
@@ -156,14 +181,14 @@ const MainPage = () => {
             />
             <PageCounter>
                 <div
-                    aria-label={"Page back"} tabIndex={0}
+                    aria-label={"Page back"} tabIndex={0} onKeyDown={handleKeyDownBack}
                     style={{ visibility: page === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage(page > 0 ? page - 1 : 0)}
                 >
                     &lt;
                 </div>
                 Page {page + 1}
-                <div aria-label={"Page forward"} tabIndex={1}
+                <div aria-label={"Page forward"} tabIndex={0} onKeyDown={handleKeyDownForward}
                     style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage((page) => (page += 1))}
                 >
@@ -197,7 +222,7 @@ const MainPage = () => {
                         />
                     );
                 })}
-                <UpButton aria-label={"To the top of page"}
+                <UpButton aria-label={"To the top of page"} tabIndex={0} onKeyDown={handleKeyDownUp}
                     onClick={() =>
                         window.scrollTo({
                             top: 0,
