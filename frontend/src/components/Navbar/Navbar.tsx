@@ -479,7 +479,7 @@ const Navbar = ({
                                         <FilterTags
                                             tabIndex={0}
                                             onKeyDown={handleKeyDownTypeRemove}
-                                            background={tag[1]}
+                                            backgroundColor={tag[1]}
                                             key={index}
                                             onClick={() => removeTag(tag[0], tags)}
                                             aria-label={tag[0]}
@@ -506,12 +506,12 @@ const Navbar = ({
                                                         tabIndex={0}
                                                         onKeyDown={handleKeyDownType}
                                                         backgroundColor={item[1]}
-                                                        style={{
+                                                        /* style={{
                                                             border:
                                                                 item[2] === "picked"
                                                                     ? "2px solid black"
                                                                     : "2px solid transparent",
-                                                        }}
+                                                        }} */
                                                         key={index}
                                                         onClick={() => addTag(item, tags, index)}
                                                         aria-label={item[0]}
