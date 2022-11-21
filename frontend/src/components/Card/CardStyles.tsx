@@ -182,8 +182,8 @@ export const PokeIndex = styled.div<PokedexI>`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
-    transform: translate(-8px, 3px);
+    width: 97.5%;
+    /* transform: translate(-8px, 0px); */
     font-size: 18px;
     color: #ffffff;
     font-weight: 400;
