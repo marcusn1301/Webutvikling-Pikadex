@@ -271,6 +271,9 @@ export const PokeballBoxSurpriseMe = styled.div`
     &:hover {
         cursor: pointer;
         background-color: rgba(255, 255, 255, 0.2);
+        .pokeballBtn {
+            transform: rotate(-360deg);
+        }
     }
     @media (max-width: 950px) {
         background-color: transparent;
@@ -290,7 +293,6 @@ export const PokeBallBtn = styled.img`
         width: 40px;
     }
     &:hover {
-        cursor: pointer;
         transform: rotate(-360deg);
     }
 `;
