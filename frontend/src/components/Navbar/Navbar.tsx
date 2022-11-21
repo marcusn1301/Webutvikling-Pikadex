@@ -471,7 +471,7 @@ const Navbar = ({
                                         onKeyDown={handleKeyDownRandom}
                                     >
                                         <PokeballBoxSurpriseMeText>Surprise me!</PokeballBoxSurpriseMeText>
-                                        <PokeBallBtn src={pokeballIcon} />
+                                        <PokeBallBtn src={pokeballIcon} className="pokeballBtn" />
                                     </PokeballBoxSurpriseMe>
                                 </PokeBallBtnContainer>
                             </SearchOuter>
