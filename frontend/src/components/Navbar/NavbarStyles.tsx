@@ -352,7 +352,7 @@ export const Tag = styled.div<TagI>`
     color: #ffffff;
     transition: 0.1s;
     padding: 2px 3px 2px 3px;
-    background-color: rgba(15, 10, 10, 0.7);
+    background-color: rgba(25, 20, 20, 0.7);
     font-weight: 500;
     letter-spacing: 1px;
     display: flex; //Center text within tag
