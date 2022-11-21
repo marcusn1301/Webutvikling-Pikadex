@@ -44,12 +44,13 @@ export const UpButton = styled.div`
     right: 25px;
     width: 50px;
     height: 50px;
-    background-color: #bd1908;
+    background-color: rgba(120, 0, 0, 0.8);
     border-radius: 50%;
+    border: 1px solid #e4b3b3;
 
     &:hover {
         cursor: pointer;
-        background-color: rgb(245, 0, 0);
+        background-color: rgba(120, 0, 0, 1);
     }
 `;
 
@@ -83,7 +84,7 @@ export const PageCounter = styled.div`
 
         &:hover {
             cursor: pointer;
-            color: rgb(200,200,200);
+            color: rgb(200, 200, 200);
         }
     }
 `;
