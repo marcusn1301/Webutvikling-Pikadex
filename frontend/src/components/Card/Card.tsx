@@ -21,6 +21,10 @@ import {
     ImgContainer,
     TagsExpanded,
     Favorited,
+    NameTagOuter,
+    IndexOuter,
+    IndexOuterBg,
+    InformationBg,
 } from "./CardStyles";
 
 import { pokemonTypesColors } from "../../types/mappings";
@@ -63,7 +67,21 @@ const UPDATE_FAVORITES = gql`
     }
 `;
 
-const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleClick, setToggleClick, favorited, isFavorited, newList }: Pokemon) => {
+const Card = ({
+    index,
+    img,
+    name,
+    type_1,
+    type_2,
+    height,
+    weight,
+    exp,
+    toggleClick,
+    setToggleClick,
+    favorited,
+    isFavorited,
+    newList,
+}: Pokemon) => {
     const types: Array<string> = [type_1, type_2];
     const [isExpanded, setIsExpanded] = useState(false);
     const [updateFavorite] = useMutation(UPDATE_FAVORITES);
@@ -144,39 +162,89 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
         }
     };
 
+    // Handles enter on card
+    const handleKeyDownCard = (event: { keyCode: number }) => {
+        if (event.keyCode === 13) {
+            handlePopup(true);
+        }
+    };
+
+    //Handle enter on back
+    const handleKeyDownCardBack = (event: { keyCode: number }) => {
+        if (event.keyCode === 13) {
+            handleRemovePopup(false);
+        }
+    };
+
+    // Handle enter on star
+    const handleKeyDownCardStar = (event: { keyCode: number }) => {
+        if (event.keyCode === 13) {
+            console.log("i tried");
+        }
+    };
+
     return (
         <>
             {!isExpanded ? (
-                <CardContainer className="cardContainer" onClick={() => handlePopup(!isExpanded)} backgroundColor={handleTypeColor()}>
-                    <PokeIndex className="pokeIndex" backgroundColor={handleTypeColor()}>
-                        {checkIndex(index)}
-                    </PokeIndex>
-                    <InformationContainer className="infoContainer">
-                        <div>
-                            <img className="imageContainer" src={img} alt={name} />
-                        </div>
-                    </InformationContainer>
-                    <Tags className="tags">
-                        {types.map((type: string, index: number) => {
-                            if (type !== null) {
-                                return (
-                                    <Tag backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]} key={index}>
-                                        {type.charAt(0).toUpperCase() + type.slice(1)}
-                                    </Tag>
-                                );
-                            }
-                        })}
-                    </Tags>
-                    <NameTag aria-label={name.charAt(0).toUpperCase() + name.slice(1)} className="nameTag" backgroundColor={handleTypeColor()}>
-                        {name.charAt(0).toUpperCase() + name.slice(1)}
-                    </NameTag>
+                <CardContainer
+                    tabIndex={0}
+                    onKeyDown={handleKeyDownCard}
+                    className="cardContainer"
+                    onClick={() => handlePopup(!isExpanded)}
+                    backgroundColor={handleTypeColor()}
+                >
+                    <IndexOuter>
+                        <IndexOuterBg backgroundColor={handleTypeColor()}>
+                            <PokeIndex className="pokeIndex" backgroundColor={handleTypeColor()}>
+                                {checkIndex(index)}
+                            </PokeIndex>
+                        </IndexOuterBg>
+                    </IndexOuter>
+                    <InformationBg>
+                        <InformationContainer className="infoContainer" backgroundColor={handleTypeColor()}>
+                            <div>
+                                <img className="imageContainer" src={img} alt={name} />
+                            </div>
+                        </InformationContainer>
+                        <Tags className="tags" backgroundColor={handleTypeColor()}>
+                            {types.map((type: string, index: number) => {
+                                if (type !== null) {
+                                    return (
+                                        <Tag
+                                            backgroundColor={
+                                                pokemonTypesColors[type as keyof typeof pokemonTypesColors]
+                                            }
+                                            key={index}
+                                        >
+                                            {type.charAt(0).toUpperCase() + type.slice(1)}
+                                        </Tag>
+                                    );
+                                }
+                            })}
+                        </Tags>
+                    </InformationBg>
+                    <NameTagOuter>
+                        <NameTag
+                            aria-label={name.charAt(0).toUpperCase() + name.slice(1)}
+                            className="nameTag"
+                            backgroundColor={handleTypeColor()}
+                        >
+                            {name.charAt(0).toUpperCase() + name.slice(1)}
+                        </NameTag>
+                    </NameTagOuter>
                 </CardContainer>
             ) : (
                 //Expanded version of a clicked card.
                 <CardExpandContainer className="expandendCardContainer" backgroundColor={handleTypeColor()}>
                     <IndexRow backgroundColor={handleTypeColor()}>
                         <BackButtonContainer>
-                            <IoArrowBackCircle size={45} className="arrowBack" onClick={() => handleRemovePopup(!isExpanded)} />
+                            <IoArrowBackCircle
+                                tabIndex={0}
+                                size={45}
+                                className="arrowBack"
+                                onKeyDown={handleKeyDownCardBack}
+                                onClick={() => handleRemovePopup(!isExpanded)}
+                            />
                         </BackButtonContainer>
                         <PokeIndex backgroundColor={handleTypeColor()} style={{ color: "#000000" }}>
                             {checkIndex(index)}
@@ -188,15 +256,26 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                                 <PokemonImg src={img} alt={name} />
                             </ImgContainer>
                             <StatsContainer backgroundColor={handleTypeColor()}>
-                                <StatsText aria-label={"XP"} className="exp">EXP: {exp}</StatsText>
-                                <StatsText aria-label={"Height"}className="height">Height: {height}</StatsText>
-                                <StatsText aria-label={"Height"} className="weight">Weight: {weight}</StatsText>
+                                <StatsText aria-label={"XP"} className="exp">
+                                    EXP: {exp}
+                                </StatsText>
+                                <StatsText aria-label={"Height"} className="height">
+                                    Height: {height}
+                                </StatsText>
+                                <StatsText aria-label={"Height"} className="weight">
+                                    Weight: {weight}
+                                </StatsText>
                             </StatsContainer>
                             <TagsExpanded>
                                 {types.map((type: string, index: number) => {
                                     if (type !== null) {
                                         return (
-                                            <Tag backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]} key={index}>
+                                            <Tag
+                                                backgroundColor={
+                                                    pokemonTypesColors[type as keyof typeof pokemonTypesColors]
+                                                }
+                                                key={index}
+                                            >
                                                 {type.charAt(0).toUpperCase() + type.slice(1)}
                                             </Tag>
                                         );
@@ -209,6 +288,7 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                         <NameTagExpanded>{name.charAt(0).toUpperCase() + name.slice(1)}</NameTagExpanded>
                         <StarContainer>
                             <AiFillStar
+                                tabIndex={0}
                                 className="star"
                                 size={30}
                                 onClick={() => handleFavorites(index, favorited)}
