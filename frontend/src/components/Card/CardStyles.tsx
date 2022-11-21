@@ -160,13 +160,13 @@ export const BackButtonContainer = styled.div`
     align-items: center;
     padding: 5px 0 0 20px;
     width: 100%;
-    color: rgb(189, 24, 8);
+    color: rgb(120, 0, 0);
 
     .arrowBack {
         float: left;
         &:hover {
             cursor: pointer;
-            color: rgb(153, 20, 8);
+            color: rgb(140, 0, 0);
         }
     }
 `;
