@@ -256,7 +256,13 @@ export const NameTagExpanded = styled.div`
 export const StarContainer = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
+    background-color: rgba(15, 10, 10, 0.8);
+    min-width: 55px;
+    max-width: 70px;
+    height: 35px;
+    border-radius: 8px;
 
     .star {
         &:hover {
@@ -266,6 +272,6 @@ export const StarContainer = styled.div`
 `;
 
 export const Favorited = styled.div`
-    color: black;
+    color: white;
     font-weight: 500;
 `;
