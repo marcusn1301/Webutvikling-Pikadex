@@ -93,6 +93,7 @@ export const Tag = styled.div<TagI>`
     height: 20px;
     background-color: rgba(15, 10, 10, 0.8);
     border: 3px solid ${(props: any) => props.backgroundColor};
+    outline: 1px solid white;
     font-size: 14px;
     border-radius: 15px;
     gap: 20px;
