@@ -162,7 +162,7 @@ const Navbar = ({
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        setSearchTerm(searchBarSearch);
+        setSearchTerm(searchBarSearch.toLowerCase());
         setFilterSearch(!filterSearch);
         setShowDropdown(false);
     };
@@ -312,7 +312,7 @@ const Navbar = ({
     };
 
     // Handles enter press in RandomButton
-    const handleKeyDownRandom = (event: { keyCode: number; }) => {
+    const handleKeyDownRandom = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
             setSurpriseMe(!surpriseMe);
             setInit(false);
@@ -320,7 +320,7 @@ const Navbar = ({
     };
 
     // Handles enter press in Search Bar
-    const handleKeyDownSearch = (event: { keyCode: number; }) => {
+    const handleKeyDownSearch = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
             setSearchTerm(searchBarSearch);
             setFilterSearch(!filterSearch);
@@ -329,72 +329,72 @@ const Navbar = ({
     };
 
     // Handles enter press in Pikadex
-    const handleKeyDownHome = (event: { keyCode: number; }) => {
+    const handleKeyDownHome = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
             handleReset();
         }
     };
 
     //Handles enter on dropdown
-    const handleKeyDownDropDown = (event: { keyCode: number; }) => {
+    const handleKeyDownDropDown = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
             setShowDropdown(!showDropdown);
         }
     };
 
     //Handles enter on reset
-    const handleKeyDownReset = (event: { keyCode: number; }) => {
+    const handleKeyDownReset = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
             handleReset();
         }
     };
 
     //Handles enter on type
-    const handleKeyDownType = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
-          console.log("i tried")
-        } 
+    const handleKeyDownType = (event: { key: string }) => {
+        if (event.key === "Enter") {
+            console.log("i tried");
+        }
     };
 
     //Handles enter on type remove
-    const handleKeyDownTypeRemove = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
+    const handleKeyDownTypeRemove = (event: { key: string }) => {
+        if (event.key === "Enter") {
             console.log("i tried");
         }
     };
 
     //Handles enter on AZ
-    const handleKeyDownAZ = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
-            handleASC(!toggleASC)
+    const handleKeyDownAZ = (event: { key: string }) => {
+        if (event.key === "Enter") {
+            handleASC(!toggleASC);
         }
     };
 
     //Handles enter on AZ
-    const handleKeyDownZA = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
-            handleDESC(!toggleDESC)
+    const handleKeyDownZA = (event: { key: string }) => {
+        if (event.key === "Enter") {
+            handleDESC(!toggleDESC);
         }
     };
 
     //Handles enter on index->
-    const handleKeyDown1andUp = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
-            handleIndexASC(!toggleIndexASC)
+    const handleKeyDown1andUp = (event: { key: string }) => {
+        if (event.key === "Enter") {
+            handleIndexASC(!toggleIndexASC);
         }
     };
 
     //Handles enter on index<-
-    const handleKeyDown801andDown = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
-            handleIndexDESC(!toggleIndexDESC)
+    const handleKeyDown801andDown = (event: { key: string }) => {
+        if (event.key === "Enter") {
+            handleIndexDESC(!toggleIndexDESC);
         }
     };
 
     //Handles enter on Fav
-    const handleKeyDownFav = (event: { key: string; }) => {
-        if (event.key === 'Enter') {
-            handleFavorited(!toggleFavorited)
+    const handleKeyDownFav = (event: { key: string }) => {
+        if (event.key === "Enter") {
+            handleFavorited(!toggleFavorited);
         }
     };
 
@@ -465,8 +465,12 @@ const Navbar = ({
                                         setInit(false);
                                     }}
                                 >
-                                    <PokeballBoxSurpriseMe aria-label={"Surprise me button"} tabIndex={0} onKeyDown={handleKeyDownRandom}>
-                                            <PokeballBoxSurpriseMeText>Surprise me!</PokeballBoxSurpriseMeText>
+                                    <PokeballBoxSurpriseMe
+                                        aria-label={"Surprise me button"}
+                                        tabIndex={0}
+                                        onKeyDown={handleKeyDownRandom}
+                                    >
+                                        <PokeballBoxSurpriseMeText>Surprise me!</PokeballBoxSurpriseMeText>
                                         <PokeBallBtn src={pokeballIcon} />
                                     </PokeballBoxSurpriseMe>
                                 </PokeBallBtnContainer>
@@ -500,7 +504,7 @@ const Navbar = ({
                                         <DropdownHeader>Types</DropdownHeader>
                                         <TypesBox aria-label={"Filter on types"}>
                                             <TagGrid>
-                                                {/* Map over the list of tags with colors and text */}            
+                                                {/* Map over the list of tags with colors and text */}
                                                 {colorList.map((item: Array<string>, index: number) => (
                                                     <Tag
                                                         tabIndex={0}
@@ -575,7 +579,12 @@ const Navbar = ({
                                     <DropdownGridRow>
                                         <ButtonsContainer>
                                             <ButtonOuter>
-                                                <ResetBtn tabIndex={0} onKeyDown={handleKeyDownReset} onClick={handleReset} aria-label={"Reset filter and sorting"}>
+                                                <ResetBtn
+                                                    tabIndex={0}
+                                                    onKeyDown={handleKeyDownReset}
+                                                    onClick={handleReset}
+                                                    aria-label={"Reset filter and sorting"}
+                                                >
                                                     Reset
                                                 </ResetBtn>
                                                 <form onSubmit={handleSubmit} className="formButton">
