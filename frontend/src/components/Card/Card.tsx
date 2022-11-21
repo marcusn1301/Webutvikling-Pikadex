@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
     CardContainer,
@@ -33,7 +33,7 @@ import hexRgb from "hex-rgb";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { AiFillStar } from "react-icons/ai";
 
-import { useQuery, gql, useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 interface Pokemon {
     index: number;
