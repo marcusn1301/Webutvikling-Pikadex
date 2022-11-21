@@ -195,7 +195,11 @@ const Card = ({
                 >
                     <IndexOuter>
                         <IndexOuterBg backgroundColor={handleTypeColor()}>
-                            <PokeIndex className="pokeIndex" backgroundColor={handleTypeColor()}>
+                            <PokeIndex
+                                className="pokeIndex"
+                                backgroundColor={handleTypeColor()}
+                                aria-label={checkIndex(index)}
+                            >
                                 {checkIndex(index)}
                             </PokeIndex>
                         </IndexOuterBg>
@@ -211,6 +215,7 @@ const Card = ({
                                 if (type !== null) {
                                     return (
                                         <Tag
+                                            aria-label={type}
                                             backgroundColor={
                                                 pokemonTypesColors[type as keyof typeof pokemonTypesColors]
                                             }
@@ -271,6 +276,7 @@ const Card = ({
                                     if (type !== null) {
                                         return (
                                             <Tag
+                                                aria-label={type}
                                                 backgroundColor={
                                                     pokemonTypesColors[type as keyof typeof pokemonTypesColors]
                                                 }
