@@ -386,7 +386,7 @@ const Navbar = ({
                                 {tags?.map((tag: string, index: number) => {
                                     return (
                                         <FilterTags
-                                            background={tag[1]}
+                                            backgroundColor={tag[1]}
                                             key={index}
                                             onClick={() => removeTag(tag[0], tags)}
                                             aria-label={tag[0]}
@@ -412,12 +412,12 @@ const Navbar = ({
                                                 {colorList.map((item: Array<string>, index: number) => (
                                                     <Tag
                                                         backgroundColor={item[1]}
-                                                        style={{
+                                                        /* style={{
                                                             border:
                                                                 item[2] === "picked"
                                                                     ? "2px solid black"
                                                                     : "2px solid transparent",
-                                                        }}
+                                                        }} */
                                                         key={index}
                                                         onClick={() => addTag(item, tags, index)}
                                                         aria-label={item[0]}
