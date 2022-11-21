@@ -49,6 +49,7 @@ import pikachu from "../../assets/Navbar/pokemon/pikachu.svg";
 import squirtle from "../../assets/Navbar/pokemon/squirtle.svg";
 import charmander from "../../assets/Navbar/pokemon/charmander.svg";
 import bulbasaur from "../../assets/Navbar/pokemon/bulbasaur.svg";
+import { keyboard } from "@testing-library/user-event/dist/keyboard";
 
 //Retrieved from https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3
 const list = [
@@ -310,6 +311,93 @@ const Navbar = ({
         }
     };
 
+    // Handles enter press in RandomButton
+    const handleKeyDownRandom = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            setSurpriseMe(!surpriseMe);
+            setInit(false);
+        }
+    };
+
+    // Handles enter press in Search Bar
+    const handleKeyDownSearch = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            setSearchTerm(searchBarSearch);
+            setFilterSearch(!filterSearch);
+            setShowDropdown(false);
+        }
+    };
+
+    // Handles enter press in Pikadex
+    const handleKeyDownHome = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            handleReset();
+        }
+    };
+
+    //Handles enter on dropdown
+    const handleKeyDownDropDown = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            setShowDropdown(!showDropdown);
+        }
+    };
+
+    //Handles enter on reset
+    const handleKeyDownReset = (event: { keyCode: number; }) => {
+        if (event.keyCode === 13) {
+            handleReset();
+        }
+    };
+
+    //Handles enter on type
+    const handleKeyDownType = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+          console.log("i tried")
+        } 
+    };
+
+    //Handles enter on type remove
+    const handleKeyDownTypeRemove = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            console.log("i tried");
+        }
+    };
+
+    //Handles enter on AZ
+    const handleKeyDownAZ = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleASC(!toggleASC)
+        }
+    };
+
+    //Handles enter on AZ
+    const handleKeyDownZA = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleDESC(!toggleDESC)
+        }
+    };
+
+    //Handles enter on index->
+    const handleKeyDown1andUp = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleIndexASC(!toggleIndexASC)
+        }
+    };
+
+    //Handles enter on index<-
+    const handleKeyDown801andDown = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleIndexDESC(!toggleIndexDESC)
+        }
+    };
+
+    //Handles enter on Fav
+    const handleKeyDownFav = (event: { key: string; }) => {
+        if (event.key === 'Enter') {
+            handleFavorited(!toggleFavorited)
+        }
+    };
+
     return (
         <>
             <NavbarOuter transition={small ? true : false} height={checkHeight()}>
@@ -321,7 +409,7 @@ const Navbar = ({
                     }}
                 >
                     <LogoContainer>
-                        <LogoTextbox onClick={() => handleReset()}>
+                        <LogoTextbox onKeyDown={handleKeyDownHome} tabIndex={0} onClick={() => handleReset()}>
                             <Logo src={logo} aria-label={"Pikadex logo"} />
                             <div aria-label={"Pikadex"}>Pikadex</div>
                         </LogoTextbox>
@@ -354,6 +442,7 @@ const Navbar = ({
                                 <div className="searchContainer">
                                     <form onSubmit={handleSubmit}>
                                         <input
+                                            tabIndex={0}
                                             type="text"
                                             placeholder="Search by name or index"
                                             className="searchbar"
@@ -361,6 +450,8 @@ const Navbar = ({
                                         />
                                     </form>
                                     <HiMagnifyingGlass
+                                        onKeyDown={handleKeyDownSearch}
+                                        tabIndex={0}
                                         size={25}
                                         className="searchIcon"
                                         onClick={handleSubmit}
@@ -374,8 +465,8 @@ const Navbar = ({
                                         setInit(false);
                                     }}
                                 >
-                                    <PokeballBoxSurpriseMe aria-label={"Surprise me button"}>
-                                        <PokeballBoxSurpriseMeText>Surprise me!</PokeballBoxSurpriseMeText>
+                                    <PokeballBoxSurpriseMe aria-label={"Surprise me button"} tabIndex={0} onKeyDown={handleKeyDownRandom}>
+                                            <PokeballBoxSurpriseMeText>Surprise me!</PokeballBoxSurpriseMeText>
                                         <PokeBallBtn src={pokeballIcon} />
                                     </PokeballBoxSurpriseMe>
                                 </PokeBallBtnContainer>
@@ -386,6 +477,8 @@ const Navbar = ({
                                 {tags?.map((tag: string, index: number) => {
                                     return (
                                         <FilterTags
+                                            tabIndex={0}
+                                            onKeyDown={handleKeyDownTypeRemove}
                                             backgroundColor={tag[1]}
                                             key={index}
                                             onClick={() => removeTag(tag[0], tags)}
@@ -407,10 +500,11 @@ const Navbar = ({
                                         <DropdownHeader>Types</DropdownHeader>
                                         <TypesBox aria-label={"Filter on types"}>
                                             <TagGrid>
-                                                {/* Map over the list of tags with colors and text */}
-
+                                                {/* Map over the list of tags with colors and text */}            
                                                 {colorList.map((item: Array<string>, index: number) => (
                                                     <Tag
+                                                        tabIndex={0}
+                                                        onKeyDown={handleKeyDownType}
                                                         backgroundColor={item[1]}
                                                         /* style={{
                                                             border:
@@ -432,6 +526,8 @@ const Navbar = ({
                                         <DropdownHeader>Sort By</DropdownHeader>
                                         <SortByBox aria-label={"Sort by"}>
                                             <SortTag
+                                                tabIndex={0}
+                                                onKeyDown={handleKeyDownAZ}
                                                 aria-label={"A to Z"}
                                                 onClick={() => handleASC(!toggleASC)}
                                                 style={{ backgroundColor: toggleASC ? "rgb(20, 20, 20)" : "" }}
@@ -439,6 +535,8 @@ const Navbar = ({
                                                 A - Z
                                             </SortTag>
                                             <SortTag
+                                                tabIndex={0}
+                                                onKeyDown={handleKeyDownZA}
                                                 aria-label={"Z to A"}
                                                 onClick={() => handleDESC(!toggleDESC)}
                                                 style={{ backgroundColor: toggleDESC ? "rgb(20, 20, 20)" : "" }}
@@ -446,6 +544,8 @@ const Navbar = ({
                                                 Z - A
                                             </SortTag>
                                             <SortTag
+                                                onKeyDown={handleKeyDown1andUp}
+                                                tabIndex={0}
                                                 aria-label={"ID low to high"}
                                                 onClick={() => handleIndexASC(!toggleIndexASC)}
                                                 style={{ backgroundColor: toggleIndexASC ? "rgb(20, 20, 20)" : "" }}
@@ -453,6 +553,8 @@ const Navbar = ({
                                                 Lowest No.
                                             </SortTag>
                                             <SortTag
+                                                onKeyDown={handleKeyDown801andDown}
+                                                tabIndex={0}
                                                 aria-label={"ID high to low"}
                                                 onClick={() => handleIndexDESC(!toggleIndexDESC)}
                                                 style={{ backgroundColor: toggleIndexDESC ? "rgb(20, 20, 20)" : "" }}
@@ -460,6 +562,8 @@ const Navbar = ({
                                                 Highest No.
                                             </SortTag>
                                             <SortTag
+                                                tabIndex={0}
+                                                onKeyDown={handleKeyDownFav}
                                                 aria-label={"Most favorited"}
                                                 onClick={() => handleFavorited(!toggleFavorited)}
                                                 style={{ backgroundColor: toggleFavorited ? "rgb(20, 20, 20)" : "" }}
@@ -471,7 +575,7 @@ const Navbar = ({
                                     <DropdownGridRow>
                                         <ButtonsContainer>
                                             <ButtonOuter>
-                                                <ResetBtn onClick={handleReset} aria-label={"Reset filter and sorting"}>
+                                                <ResetBtn tabIndex={0} onKeyDown={handleKeyDownReset} onClick={handleReset} aria-label={"Reset filter and sorting"}>
                                                     Reset
                                                 </ResetBtn>
                                                 <form onSubmit={handleSubmit} className="formButton">
@@ -489,8 +593,10 @@ const Navbar = ({
                 </OverflowWrapper>
                 <FilterOuter>
                     <NavbarEdge
+                        tabIndex={0}
                         aria-label={"Toggle navbar dropdown"}
                         className="navbarDropdown"
+                        onKeyDown={handleKeyDownDropDown}
                         // style={{ marginTop: small || showDropdown ? "50px" : "10px" }}
                         src={navbarEdge}
                         onClick={() => setShowDropdown(!showDropdown)}

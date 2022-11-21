@@ -162,10 +162,33 @@ const Card = ({
         }
     };
 
+    // Handles enter on card
+    const handleKeyDownCard = (event: { keyCode: number }) => {
+        if (event.keyCode === 13) {
+            handlePopup(true);
+        }
+    };
+
+    //Handle enter on back
+    const handleKeyDownCardBack = (event: { keyCode: number }) => {
+        if (event.keyCode === 13) {
+            handleRemovePopup(false);
+        }
+    };
+
+    // Handle enter on star
+    const handleKeyDownCardStar = (event: { keyCode: number }) => {
+        if (event.keyCode === 13) {
+            console.log("i tried");
+        }
+    };
+
     return (
         <>
             {!isExpanded ? (
                 <CardContainer
+                    tabIndex={0}
+                    onKeyDown={handleKeyDownCard}
                     className="cardContainer"
                     onClick={() => handlePopup(!isExpanded)}
                     backgroundColor={handleTypeColor()}
@@ -216,8 +239,10 @@ const Card = ({
                     <IndexRow backgroundColor={handleTypeColor()}>
                         <BackButtonContainer>
                             <IoArrowBackCircle
+                                tabIndex={0}
                                 size={45}
                                 className="arrowBack"
+                                onKeyDown={handleKeyDownCardBack}
                                 onClick={() => handleRemovePopup(!isExpanded)}
                             />
                         </BackButtonContainer>
@@ -263,6 +288,7 @@ const Card = ({
                         <NameTagExpanded>{name.charAt(0).toUpperCase() + name.slice(1)}</NameTagExpanded>
                         <StarContainer>
                             <AiFillStar
+                                tabIndex={0}
                                 className="star"
                                 size={30}
                                 onClick={() => handleFavorites(index, favorited)}
