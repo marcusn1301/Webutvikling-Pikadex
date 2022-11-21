@@ -93,7 +93,7 @@ export const Tag = styled.div<TagI>`
     height: 20px;
     background-color: rgba(15, 10, 10, 0.8);
     border: 3px solid ${(props: any) => props.backgroundColor};
-    outline: 1px solid white;
+    outline: 1px solid #1a1a1a;
     font-size: 14px;
     border-radius: 15px;
     gap: 20px;
@@ -160,13 +160,13 @@ export const BackButtonContainer = styled.div`
     align-items: center;
     padding: 5px 0 0 20px;
     width: 100%;
-    color: rgb(189, 24, 8);
+    color: rgb(120, 0, 0);
 
     .arrowBack {
         float: left;
         &:hover {
             cursor: pointer;
-            color: rgb(153, 20, 8);
+            color: rgb(140, 0, 0);
         }
     }
 `;
