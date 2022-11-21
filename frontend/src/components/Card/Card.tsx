@@ -179,7 +179,7 @@ const Card = ({
     // Handle enter on star
     const handleKeyDownCardStar = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
-            console.log("i tried");
+            handleFavorites(index, favorited);
         }
     };
 
@@ -288,6 +288,7 @@ const Card = ({
                         <NameTagExpanded>{name.charAt(0).toUpperCase() + name.slice(1)}</NameTagExpanded>
                         <StarContainer>
                             <AiFillStar
+                                onKeyDown={handleKeyDownCardStar}
                                 tabIndex={0}
                                 className="star"
                                 size={30}
