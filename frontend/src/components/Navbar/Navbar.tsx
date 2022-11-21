@@ -161,7 +161,7 @@ const Navbar = ({
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        setSearchTerm(searchBarSearch);
+        setSearchTerm(searchBarSearch.toLowerCase());
         setFilterSearch(!filterSearch);
         setShowDropdown(false);
     };
