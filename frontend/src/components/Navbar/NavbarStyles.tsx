@@ -14,7 +14,7 @@ export const NavbarOuter = styled.div<Epic>`
     height: ${(props) => props.height};
     position: fixed;
     width: 100%;
-    background-color: #bd1808;
+    background-color: #420000;
 
     .pikachu {
         position: absolute;
@@ -172,10 +172,13 @@ export const SearchOuter = styled.div`
     .searchContainer {
         display: inline-flex;
         flex: 1;
-        border: 1px solid grey;
+        border: 2px solid white;
         background-color: #f4f4f4;
-        border-radius: 6px;
+        border-radius: 20px;
         overflow: hidden;
+        &:focus {
+            outline: 2px solid black;
+        }
     }
 
     .searchIcon {
@@ -259,15 +262,16 @@ export const PokeBallBtnContainer = styled.div`
 export const PokeballBoxSurpriseMe = styled.div`
     color: white;
     border-radius: 6px;
-    background-color: rgba(15, 10, 10, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
     width: 90%;
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 5px;
+    border: 1px solid #e4b3b3;
     &:hover {
         cursor: pointer;
-        background-color: rgba(15, 10, 10, 0.8);
+        background-color: rgba(255, 255, 255, 0.2);
     }
     @media (max-width: 950px) {
         background-color: transparent;
@@ -422,7 +426,7 @@ export const DropdownContainer = styled.div`
 export const DropdownOuter = styled.div`
     transition: 0.5s all;
     position: relative;
-    background-color: #bd1808;
+    background-color: #420000;
     width: 100%;
     height: 500px;
     z-index: 999;
@@ -540,6 +544,7 @@ export const ButtonsContainer = styled.div`
 export const ButtonOuter = styled.div`
     display: grid;
     grid-template-columns: 1fr 1fr;
+    padding-bottom: 10px;
     @media screen and (max-width: 600px) {
         width: 90%;
     }
@@ -549,38 +554,39 @@ export const ButtonOuter = styled.div`
 `;
 
 export const ResetBtn = styled.div`
-    background-color: rgba(15, 10, 10, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     padding: 5px 0 5px 0;
     width: 70%;
     border-radius: 10px;
     font-size: 1.2rem;
     margin: auto;
-
+    border: 1px solid #e4b3b3;
     @media screen and (max-width: 320px) {
         font-size: 1rem;
     }
     &:hover {
         cursor: pointer;
-        background-color: rgba(15, 10, 10, 0.8);
+        background-color: rgba(255, 255, 255, 0.2);
     }
 `;
 
 export const SearchBtn = styled.button`
-    background-color: rgba(15, 10, 10, 0.7);
+    background-color: rgba(255, 255, 255, 0.1);
     color: #ffffff;
     width: 100%;
     height: 100%;
     border: none;
     border-radius: 10px;
     font-size: 1.2rem;
+    border: 1px solid #e4b3b3;
 
     @media screen and (max-width: 320px) {
         font-size: 1rem;
     }
     &:hover {
         cursor: pointer;
-        background-color: rgba(15, 10, 10, 0.8);
+        background-color: rgba(255, 255, 255, 0.2);
     }
 `;
 
