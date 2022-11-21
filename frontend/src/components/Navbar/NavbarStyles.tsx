@@ -345,18 +345,20 @@ interface TagI {
 
 //Type tag such as Water, Bug, Fire, etc.
 export const Tag = styled.div<TagI>`
-    color: #000000;
+    color: #ffffff;
     transition: 0.1s;
     padding: 2px 3px 2px 3px;
-    background-color: ${(props) => props.backgroundColor};
+    background-color: rgba(15, 10, 10, 0.7);
     font-weight: 500;
     letter-spacing: 1px;
     display: flex; //Center text within tag
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 10px;
+    border: 5px solid ${(props) => props.backgroundColor};
+    border-radius: 12px;
     &:hover {
         cursor: pointer;
+        background-color: rgba(15, 10, 10, 0.8);
     }
 `;
 
@@ -364,21 +366,22 @@ interface FilterTagsI {
     background: string;
 }
 
-export const FilterTags = styled.div<FilterTagsI>`
-    color: #000000;
+export const FilterTags = styled.div<TagI>`
+    color: #ffffff;
     padding: 2px 3px 2px 3px;
     transition: 0.1s;
-
-    background-color: ${(props) => props.background};
+    background-color: rgba(15, 10, 10, 0.7);
     font-weight: 500;
     letter-spacing: 1px;
     display: flex; //Center text within tag
     align-items: center;
     justify-content: space-evenly;
-    border-radius: 10px;
+    border: 5px solid ${(props) => props.backgroundColor};
+    border-radius: 12px;
     &:hover {
         cursor: pointer;
         opacity: 0.85;
+        background-color: rgba(15, 10, 10, 0.8);
     }
 `;
 //The bottom edge of the navbar
@@ -494,7 +497,7 @@ export const SortByBox = styled.div`
 
 //"Sort by"-tags such as "A - Z"
 export const SortTag = styled.div`
-    background-color: rgba(15, 10, 10, 0.5);
+    background-color: rgba(15, 10, 10, 0.7);
     color: #ffffff;
     border-radius: 10px;
     font-size: 1.2rem;
@@ -519,7 +522,7 @@ export const SortTag = styled.div`
     }
     &:hover {
         cursor: pointer;
-        background-color: rgba(15, 10, 10, 0.7);
+        background-color: rgba(15, 10, 10, 0.8);
     }
 `;
 
@@ -545,7 +548,7 @@ export const ButtonOuter = styled.div`
 `;
 
 export const ResetBtn = styled.div`
-    background-color: rgba(15, 10, 10, 0.5);
+    background-color: rgba(15, 10, 10, 0.7);
     color: #ffffff;
     padding: 5px 0 5px 0;
     width: 70%;
@@ -558,12 +561,12 @@ export const ResetBtn = styled.div`
     }
     &:hover {
         cursor: pointer;
-        background-color: rgba(15, 10, 10, 0.7);
+        background-color: rgba(15, 10, 10, 0.8);
     }
 `;
 
 export const SearchBtn = styled.button`
-    background-color: rgba(15, 10, 10, 0.5);
+    background-color: rgba(15, 10, 10, 0.7);
     color: #ffffff;
     width: 100%;
     height: 100%;
@@ -576,7 +579,7 @@ export const SearchBtn = styled.button`
     }
     &:hover {
         cursor: pointer;
-        background-color: rgba(15, 10, 10, 0.7);
+        background-color: rgba(15, 10, 10, 0.8);
     }
 `;
 
