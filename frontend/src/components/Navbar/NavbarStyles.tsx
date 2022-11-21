@@ -30,7 +30,6 @@ export const NavbarOuter = styled.div<Epic>`
         height: ${(props) => props.height};
         position: fixed;
         width: 100%;
-        background-color: #bd1808;
     }
 `;
 
