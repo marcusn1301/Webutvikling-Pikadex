@@ -18,7 +18,7 @@ interface PokedexI {
 
 export const CardContainer = styled.div<CardContainerI>`
     width: 80%;
-    height: 190px;
+    height: fit-content;
     border-radius: 8px;
     display: grid;
     grid-template-rows: auto;
@@ -40,7 +40,7 @@ export const InformationContainer = styled.div<CardContainerI>`
     display: grid;
     column-gap: 10px;
     justify-content: center;
-    background-color: rgba(${(props: any) => props.backgroundColor}, 0.4);
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.2);
 `;
 
 export const TagIcon = styled.div<TagIconI>`
@@ -78,7 +78,7 @@ export const Tags = styled.div<CardContainerI>`
     font-size: 14px;
     gap: 30px;
     position: relative;
-    background-color: rgba(${(props: any) => props.backgroundColor}, 0.4);
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.2);
 `;
 
 export const Tag = styled.div<TagI>`
@@ -87,12 +87,13 @@ export const Tag = styled.div<TagI>`
     align-items: center;
     min-width: 40px;
     height: 20px;
-    background-color: ${(props: any) => props.backgroundColor};
+    background-color: rgba(15, 10, 10, 0.8);
+    border: 3px solid ${(props: any) => props.backgroundColor};
     font-size: 14px;
     border-radius: 15px;
     gap: 20px;
     padding: 3px 6px 3px 6px;
-    color: black;
+    color: white;
     font-weight: 500;
     font-size: 13px;
     transform: translateY(-20%);
@@ -109,6 +110,7 @@ export const CardExpandContainer = styled.div<CardContainerI>`
     grid-template-rows: repeat(auto);
     transition: 0.1s;
     z-index: 999999;
+    border: 2px solid rgba(${(props: any) => props.backgroundColor});
 
     @media (max-width: 600px) {
         width: 85%;
@@ -201,9 +203,9 @@ export const InfoGrid = styled.div`
 
 export const StatsContainer = styled.div<CardContainerI>`
     font-size: 1.2rem;
-    color: #000000;
+    color: white;
     width: fit-content;
-    background-color: rgb(${(props: any) => props.backgroundColor});
+    background-color: #303030;
     display: grid;
     grid-template-rows: 1fr;
     justify-content: center;
@@ -213,7 +215,6 @@ export const StatsContainer = styled.div<CardContainerI>`
 
 export const StatsText = styled.div`
     font-size: 1.2rem;
-    color: #000000;
     width: 100%;
 `;
 
@@ -239,7 +240,7 @@ export const NameContainer = styled.div<CardContainerI>`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-color: rgb(${(props: any) => props.backgroundColor});
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.4);
 `;
 
 export const NameTagExpanded = styled.div`
@@ -258,7 +259,6 @@ export const StarContainer = styled.div`
     gap: 5px;
 
     .star {
-        color: white;
         &:hover {
             cursor: pointer;
         }
