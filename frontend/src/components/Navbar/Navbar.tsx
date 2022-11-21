@@ -161,7 +161,7 @@ const Navbar = ({
 
     const handleSubmit = (e: any) => {
         e.preventDefault();
-        setSearchTerm(searchBarSearch.toLowerCase());
+        setSearchTerm(searchBarSearch);
         setFilterSearch(!filterSearch);
         setShowDropdown(false);
     };
@@ -314,6 +314,7 @@ const Navbar = ({
         <>
             <NavbarOuter transition={small ? true : false} height={checkHeight()}>
                 <OverflowWrapper
+                    aria-label={"Navbar"}
                     style={{
                         minHeight: small ? "63px" : "173px",
                         overflowY: !showDropdown ? "hidden" : "scroll",
@@ -321,8 +322,8 @@ const Navbar = ({
                 >
                     <LogoContainer>
                         <LogoTextbox onClick={() => handleReset()}>
-                            <Logo src={logo} />
-                            <div>Pikadex</div>
+                            <Logo src={logo} aria-label={"Pikadex logo"} />
+                            <div aria-label={"Pikadex"}>Pikadex</div>
                         </LogoTextbox>
                     </LogoContainer>
                     {!showDropdown && (
@@ -359,7 +360,12 @@ const Navbar = ({
                                             onChange={(e) => setSearchBarSearch(e.target.value)}
                                         />
                                     </form>
-                                    <HiMagnifyingGlass size={25} className="searchIcon" onClick={handleSubmit} />
+                                    <HiMagnifyingGlass
+                                        size={25}
+                                        className="searchIcon"
+                                        onClick={handleSubmit}
+                                        aria-label={"Search button"}
+                                    />
                                 </div>
                                 {/* Grid column 2 */}
                                 <PokeBallBtnContainer
@@ -368,7 +374,7 @@ const Navbar = ({
                                         setInit(false);
                                     }}
                                 >
-                                    <PokeballBoxSurpriseMe>
+                                    <PokeballBoxSurpriseMe aria-label={"Surprise me button"}>
                                         <PokeballBoxSurpriseMeText>Surprise me!</PokeballBoxSurpriseMeText>
                                         <PokeBallBtn src={pokeballIcon} />
                                     </PokeballBoxSurpriseMe>
@@ -383,6 +389,7 @@ const Navbar = ({
                                             background={tag[1]}
                                             key={index}
                                             onClick={() => removeTag(tag[0], tags)}
+                                            aria-label={tag[0]}
                                         >
                                             {tag[0]}
                                         </FilterTags>
@@ -398,7 +405,7 @@ const Navbar = ({
                                 <DropdownOuter>
                                     <DropdownGridRow>
                                         <DropdownHeader>Types</DropdownHeader>
-                                        <TypesBox>
+                                        <TypesBox aria-label={"Filter on types"}>
                                             <TagGrid>
                                                 {/* Map over the list of tags with colors and text */}
 
@@ -413,6 +420,7 @@ const Navbar = ({
                                                         }}
                                                         key={index}
                                                         onClick={() => addTag(item, tags, index)}
+                                                        aria-label={item[0]}
                                                     >
                                                         {item[0]}
                                                     </Tag>
@@ -422,32 +430,37 @@ const Navbar = ({
                                     </DropdownGridRow>
                                     <DropdownGridRow>
                                         <DropdownHeader>Sort By</DropdownHeader>
-                                        <SortByBox>
+                                        <SortByBox aria-label={"Sort by"}>
                                             <SortTag
+                                                aria-label={"A to Z"}
                                                 onClick={() => handleASC(!toggleASC)}
                                                 style={{ backgroundColor: toggleASC ? "rgb(20, 20, 20)" : "" }}
                                             >
                                                 A - Z
                                             </SortTag>
                                             <SortTag
+                                                aria-label={"Z to A"}
                                                 onClick={() => handleDESC(!toggleDESC)}
                                                 style={{ backgroundColor: toggleDESC ? "rgb(20, 20, 20)" : "" }}
                                             >
                                                 Z - A
                                             </SortTag>
                                             <SortTag
+                                                aria-label={"ID low to high"}
                                                 onClick={() => handleIndexASC(!toggleIndexASC)}
                                                 style={{ backgroundColor: toggleIndexASC ? "rgb(20, 20, 20)" : "" }}
                                             >
                                                 Lowest No.
                                             </SortTag>
                                             <SortTag
+                                                aria-label={"ID high to low"}
                                                 onClick={() => handleIndexDESC(!toggleIndexDESC)}
                                                 style={{ backgroundColor: toggleIndexDESC ? "rgb(20, 20, 20)" : "" }}
                                             >
                                                 Highest No.
                                             </SortTag>
                                             <SortTag
+                                                aria-label={"Most favorited"}
                                                 onClick={() => handleFavorited(!toggleFavorited)}
                                                 style={{ backgroundColor: toggleFavorited ? "rgb(20, 20, 20)" : "" }}
                                             >
@@ -458,9 +471,13 @@ const Navbar = ({
                                     <DropdownGridRow>
                                         <ButtonsContainer>
                                             <ButtonOuter>
-                                                <ResetBtn onClick={handleReset}>Reset</ResetBtn>
+                                                <ResetBtn onClick={handleReset} aria-label={"Reset filter and sorting"}>
+                                                    Reset
+                                                </ResetBtn>
                                                 <form onSubmit={handleSubmit} className="formButton">
-                                                    <SearchBtn type="submit">Search</SearchBtn>
+                                                    <SearchBtn type="submit" aria-label={"Search"}>
+                                                        Search
+                                                    </SearchBtn>
                                                 </form>
                                             </ButtonOuter>
                                         </ButtonsContainer>
@@ -472,6 +489,7 @@ const Navbar = ({
                 </OverflowWrapper>
                 <FilterOuter>
                     <NavbarEdge
+                        aria-label={"Toggle navbar dropdown"}
                         className="navbarDropdown"
                         // style={{ marginTop: small || showDropdown ? "50px" : "10px" }}
                         src={navbarEdge}
