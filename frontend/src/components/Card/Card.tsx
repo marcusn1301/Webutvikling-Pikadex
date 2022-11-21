@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
     CardContainer,
@@ -33,7 +33,7 @@ import hexRgb from "hex-rgb";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { AiFillStar } from "react-icons/ai";
 
-import { useQuery, gql, useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 interface Pokemon {
     index: number;
@@ -200,7 +200,7 @@ const Card = ({
                             </PokeIndex>
                         </IndexOuterBg>
                     </IndexOuter>
-                    <InformationBg>
+                    <InformationBg backgroundColor={handleTypeColor()}>
                         <InformationContainer className="infoContainer" backgroundColor={handleTypeColor()}>
                             <div>
                                 <img className="imageContainer" src={img} alt={name} />
