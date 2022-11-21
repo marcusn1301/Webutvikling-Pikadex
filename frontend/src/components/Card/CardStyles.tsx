@@ -29,11 +29,15 @@ export const CardContainer = styled.div<CardContainerI>`
     }
 `;
 
-export const InformationBg = styled.div`
+export const InformationBg = styled.div<CardContainerI>`
     width: 100%;
     background-color: #ffffff;
     display: grid;
     grid-template-rows: auto;
+    &:hover {
+        background-color: rgba(${(props: any) => props.backgroundColor}, 0.5);
+        transition: 0.3s;
+    }
 `;
 export const InformationContainer = styled.div<CardContainerI>`
     width: 100%;
@@ -89,6 +93,7 @@ export const Tag = styled.div<TagI>`
     height: 20px;
     background-color: rgba(15, 10, 10, 0.8);
     border: 3px solid ${(props: any) => props.backgroundColor};
+    outline: 1px solid white;
     font-size: 14px;
     border-radius: 15px;
     gap: 20px;
@@ -182,8 +187,8 @@ export const PokeIndex = styled.div<PokedexI>`
     display: flex;
     justify-content: flex-end;
     align-items: center;
-    width: 100%;
-    transform: translate(-8px, 3px);
+    width: 97.5%;
+    /* transform: translate(-8px, 0px); */
     font-size: 18px;
     color: #ffffff;
     font-weight: 400;
@@ -256,7 +261,13 @@ export const NameTagExpanded = styled.div`
 export const StarContainer = styled.div`
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 5px;
+    background-color: rgba(15, 10, 10, 0.8);
+    min-width: 55px;
+    max-width: 70px;
+    height: 35px;
+    border-radius: 8px;
 
     .star {
         &:hover {
@@ -266,6 +277,6 @@ export const StarContainer = styled.div`
 `;
 
 export const Favorited = styled.div`
-    color: black;
+    color: white;
     font-weight: 500;
 `;

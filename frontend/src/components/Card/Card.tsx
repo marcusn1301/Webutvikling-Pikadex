@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 
 import {
     CardContainer,
@@ -33,7 +33,7 @@ import hexRgb from "hex-rgb";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { AiFillStar } from "react-icons/ai";
 
-import { useQuery, gql, useMutation } from "@apollo/client";
+import { gql, useMutation } from "@apollo/client";
 
 interface Pokemon {
     index: number;
@@ -179,7 +179,7 @@ const Card = ({
     // Handle enter on star
     const handleKeyDownCardStar = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
-            console.log("i tried");
+            handleFavorites(index, favorited);
         }
     };
 
@@ -195,12 +195,16 @@ const Card = ({
                 >
                     <IndexOuter>
                         <IndexOuterBg backgroundColor={handleTypeColor()}>
-                            <PokeIndex className="pokeIndex" backgroundColor={handleTypeColor()}>
+                            <PokeIndex
+                                className="pokeIndex"
+                                backgroundColor={handleTypeColor()}
+                                aria-label={checkIndex(index)}
+                            >
                                 {checkIndex(index)}
                             </PokeIndex>
                         </IndexOuterBg>
                     </IndexOuter>
-                    <InformationBg>
+                    <InformationBg backgroundColor={handleTypeColor()}>
                         <InformationContainer className="infoContainer" backgroundColor={handleTypeColor()}>
                             <div>
                                 <img className="imageContainer" src={img} alt={name} />
@@ -211,6 +215,7 @@ const Card = ({
                                 if (type !== null) {
                                     return (
                                         <Tag
+                                            aria-label={type}
                                             backgroundColor={
                                                 pokemonTypesColors[type as keyof typeof pokemonTypesColors]
                                             }
@@ -271,6 +276,7 @@ const Card = ({
                                     if (type !== null) {
                                         return (
                                             <Tag
+                                                aria-label={type}
                                                 backgroundColor={
                                                     pokemonTypesColors[type as keyof typeof pokemonTypesColors]
                                                 }
@@ -288,6 +294,7 @@ const Card = ({
                         <NameTagExpanded>{name.charAt(0).toUpperCase() + name.slice(1)}</NameTagExpanded>
                         <StarContainer>
                             <AiFillStar
+                                onKeyDown={handleKeyDownCardStar}
                                 tabIndex={0}
                                 className="star"
                                 size={30}

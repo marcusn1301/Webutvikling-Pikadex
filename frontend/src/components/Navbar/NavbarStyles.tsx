@@ -259,7 +259,7 @@ export const PokeBallBtnContainer = styled.div`
 export const PokeballBoxSurpriseMe = styled.div`
     color: white;
     border-radius: 6px;
-    background-color: rgba(255, 255, 255, 0.2);
+    background-color: rgba(15, 10, 10, 0.7);
     width: 90%;
     display: flex;
     align-items: center;
@@ -267,7 +267,7 @@ export const PokeballBoxSurpriseMe = styled.div`
     gap: 5px;
     &:hover {
         cursor: pointer;
-        background-color: rgba(255, 255, 255, 0.3);
+        background-color: rgba(15, 10, 10, 0.8);
     }
     @media (max-width: 950px) {
         background-color: transparent;
@@ -355,7 +355,7 @@ export const Tag = styled.div<TagI>`
     align-items: center;
     justify-content: space-evenly;
     border: 5px solid ${(props) => props.backgroundColor};
-    border-radius: 12px;
+    border-radius: 20px;
     &:hover {
         cursor: pointer;
         background-color: rgba(15, 10, 10, 0.8);
@@ -377,7 +377,8 @@ export const FilterTags = styled.div<TagI>`
     align-items: center;
     justify-content: space-evenly;
     border: 5px solid ${(props) => props.backgroundColor};
-    border-radius: 12px;
+    outline: 1px solid white;
+    border-radius: 20px;
     &:hover {
         cursor: pointer;
         opacity: 0.85;
