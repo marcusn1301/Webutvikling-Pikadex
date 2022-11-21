@@ -156,13 +156,14 @@ const MainPage = () => {
             />
             <PageCounter>
                 <div
+                    aria-label={"Page back"} tabIndex={0}
                     style={{ visibility: page === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage(page > 0 ? page - 1 : 0)}
                 >
                     &lt;
                 </div>
                 Page {page + 1}
-                <div
+                <div aria-label={"Page forward"} tabIndex={1}
                     style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage((page) => (page += 1))}
                 >
@@ -172,7 +173,7 @@ const MainPage = () => {
             <CardGrid>
                 {data?.pokemon?.length === 0 && (
                     <SadPika>
-                        <img src={sadPikaGIF} alt="sad pika :(" />
+                        <img aria-label={"Image of Pikachu"} src={sadPikaGIF} alt="sad pika :(" />
                         <div style={{ color: "white" }}>No more Pokemon :(</div>
                     </SadPika>
                 )}
@@ -196,7 +197,7 @@ const MainPage = () => {
                         />
                     );
                 })}
-                <UpButton
+                <UpButton aria-label={"To the top of page"}
                     onClick={() =>
                         window.scrollTo({
                             top: 0,

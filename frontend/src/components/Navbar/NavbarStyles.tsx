@@ -76,7 +76,7 @@ export const LogoContainer = styled.div`
 `;
 
 export const LogoTextbox = styled.div`
-    transition: 0.5s all;
+    /* transition: 0.5s all; */
 
     display: flex;
     justify-content: space-between;
@@ -88,6 +88,7 @@ export const LogoTextbox = styled.div`
     }
     &:hover {
         cursor: pointer;
+        filter: invert(20%);
     }
 `;
 

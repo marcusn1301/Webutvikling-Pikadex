@@ -160,6 +160,7 @@ export const BackButtonContainer = styled.div`
         float: left;
         &:hover {
             cursor: pointer;
+            color: rgb(153, 20, 8);
         }
     }
 `;
@@ -249,7 +250,6 @@ export const StarContainer = styled.div`
         color: white;
         &:hover {
             cursor: pointer;
-            color: yellow;
         }
     }
 `;
