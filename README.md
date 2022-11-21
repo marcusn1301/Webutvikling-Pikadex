@@ -35,18 +35,32 @@ $ npm start # Starter backend-serveren
 Prosjektet er delt opp i en klient (frontend) og en server (backend) side. Disse er separert i hver sin mappe. Klienten er en _React_-webapp og serveren er en _Node_ backend, begge er skrevet i Typescript.
 All dataen blir lagret i en Neo4j-database - dette består hovedsakelig av antall likes hver pokemon har. Vi bruker også localstorage for ...
 
+### Sortering
+
+Vi implementerte sorteringen, og det er nå mulig å sortere på navn (alfabetisk), ID (numerisk), og pokemon med flest favoritter.
+
 ### Valg av teknologier
 
 #### Apollo Client
 
 #### Neo4j
 
-## Universell utforming
+## Universell utforming / web accessibility 
+
+Universell utforming / web accessibility har vært et av hovedmålene ved utviklingsprosessen. 
+
+Først og fremst vi økt kontrasten flere steder. Vi brukte Chrome sitt utviklerverktøy til å sjekke kontrastnivået mellom tekst og bakgrunn. Farger ble endret på knapper, kanter, tekst og bakgrunner. Dette er et valg som vi har tatt for å bidra til å gjøre siden vår lettere å lese for de som har nedsatt synsevne. 
+
+Videre implementerte vi muligheten for navigasjon med tasturet. Dette har vi gjort ved å legge til en tabIndex til komponeneter som er nødvendige for bruken av siden. Slik kan man markere knapper, input-felt og viktig tekst ved å trykke på 'Tab', og 'Enter' for å aktivere knappene. Vi valgte å legge til denne funksjonen for å gjøre det mulig å navigere siden dersom man har motoriske vansker eller nedsatt synsevne, og ikke kan bruke mus.
+
+For å gjøre det enda lettere å navigere siden vår med nedsatt synsevne la vi til aria-labels. Dette er attributter som beskriver de forskjellige komponentene på siden. Alt som kan navigeres gjennom med tastaturet har aria-labels. Skjermlesere kan dermed lese opp navnene på komponentene, og bidrar til økt web accessibility for de med nedsatt synsevne. 
 
 ## Bærekraft
 
 Vi har gjennom hele utviklingsprosessen hatt bærekraft i tankene. Bilder og andre medier utgjør ofte de største faktorene som påvirker utslipp, og vi har derfor prøvd å minimere bruken av disse på en rekke måter.
-Først og fremst, er det kun bilder av Pokemon som blir lastet inn, i tillegg er disse bildene av lavere oppløsning (hvordan de vises i selve spillet). Vi har også benyttet oss av SVG-er der det har latt seg gjøre (f. eks for ikoner, pokeballdesign i bakgrunnen osv..)
+Først og fremst, er det kun bilder av Pokemon som blir lastet inn, i tillegg er disse bildene av lavere oppløsning (slik de vises i selve spillet). Vi har også benyttet oss av SVG-er der det har latt seg gjøre (f.eks for ikoner, pokeballdesign i bakgrunnen, osv..)
+
+Under utviklingsprosessen har vi blant annet gjort fargene mørkere for å bidra til et lavere energiforbruk. Hovedfargene på siden er rgb(30, 30, 30) (mørkegrå bakgrunn) og rgb(66, 0, 0) (mørkerød navbar). Svart og rød er de to fargene som bruker minst energi, og en av grunnene til fargevalget vårt. Vi sparer dermed miljøet og batterinivået i samme slengen. 
 
 ## Valg av API
 
