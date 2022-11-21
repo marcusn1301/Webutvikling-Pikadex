@@ -167,7 +167,7 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                             }
                         })}
                     </Tags>
-                    <NameTag className="nameTag" backgroundColor={handleTypeColor()}>
+                    <NameTag aria-label={name.charAt(0).toUpperCase() + name.slice(1)} className="nameTag" backgroundColor={handleTypeColor()}>
                         {name.charAt(0).toUpperCase() + name.slice(1)}
                     </NameTag>
                 </CardContainer>
@@ -188,9 +188,9 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                                 <PokemonImg src={img} alt={name} />
                             </ImgContainer>
                             <StatsContainer backgroundColor={handleTypeColor()}>
-                                <StatsText className="exp">EXP: {exp}</StatsText>
-                                <StatsText className="height">Height: {height}</StatsText>
-                                <StatsText className="weight">Weight: {weight}</StatsText>
+                                <StatsText aria-label={"XP"} className="exp">EXP: {exp}</StatsText>
+                                <StatsText aria-label={"Height"}className="height">Height: {height}</StatsText>
+                                <StatsText aria-label={"Height"} className="weight">Weight: {weight}</StatsText>
                             </StatsContainer>
                             <TagsExpanded>
                                 {types.map((type: string, index: number) => {

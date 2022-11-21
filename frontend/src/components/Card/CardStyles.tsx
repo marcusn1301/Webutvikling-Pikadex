@@ -56,7 +56,7 @@ export const TagIcon = styled.div<TagIconI>`
 
 export const NameTag = styled.div<NameTagI>`
     width: 100%;
-    color: white;
+    color: black;
     font-size: 22px;
     font-weight: 400;
     height: 100%;
@@ -94,7 +94,7 @@ export const Tag = styled.div<TagI>`
     border-radius: 15px;
     gap: 20px;
     padding: 3px 6px 3px 6px;
-    color: white;
+    color: black;
     font-weight: 500;
     font-size: 13px;
 `;
@@ -160,6 +160,7 @@ export const BackButtonContainer = styled.div`
         float: left;
         &:hover {
             cursor: pointer;
+            color: rgb(153, 20, 8);
         }
     }
 `;
@@ -189,7 +190,7 @@ export const InfoGrid = styled.div`
 
 export const StatsContainer = styled.div<CardContainerI>`
     font-size: 1.2rem;
-    color: #ffffff;
+    color: #000000;
     width: fit-content;
     background-color: rgb(${(props: any) => props.backgroundColor});
     display: grid;
@@ -201,7 +202,7 @@ export const StatsContainer = styled.div<CardContainerI>`
 
 export const StatsText = styled.div`
     font-size: 1.2rem;
-    color: #ffffff;
+    color: #000000;
     width: 100%;
 `;
 
@@ -231,7 +232,7 @@ export const NameContainer = styled.div<CardContainerI>`
 `;
 
 export const NameTagExpanded = styled.div`
-    color: white;
+    color: black;
     font-size: 22px;
     font-weight: 400;
     display: flex;
@@ -249,12 +250,11 @@ export const StarContainer = styled.div`
         color: white;
         &:hover {
             cursor: pointer;
-            color: yellow;
         }
     }
 `;
 
 export const Favorited = styled.div`
-    color: white;
+    color: black;
     font-weight: 500;
 `;

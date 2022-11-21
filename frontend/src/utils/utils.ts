@@ -9,16 +9,16 @@ export const searchVariablesObject = (page: number, searchTerm: string, sortOrde
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder != "" && sortIndexOrder == "" ? [
+                sort: sortOrder !== "" && sortIndexOrder === "" ? [
                     {
                         name: sortOrder
                     },
-                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                ] : sortOrder === "" && sortIndexOrder !== "" ? 
                 [
                     {
                         id: sortIndexOrder
                     }
-                ] : sortFavorited != "" ? [
+                ] : sortFavorited !== "" ? [
                     {
                         favorited: sortFavorited
                     }
@@ -37,16 +37,16 @@ export const noVariablesObject = (page: number, sortOrder: string, sortIndexOrde
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder != "" && sortIndexOrder == "" ? [
+                sort: sortOrder !== "" && sortIndexOrder === "" ? [
                     {
                         name: sortOrder
                     },
-                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                ] : sortOrder === "" && sortIndexOrder !== "" ? 
                 [
                     {
                         id: sortIndexOrder
                     }
-                ] : sortFavorited != "" ? [
+                ] : sortFavorited !== "" ? [
                     {
                         favorited: sortFavorited
                     }
@@ -70,16 +70,16 @@ export const tagVariablesObject = (page: number, tags: Array<Array<string>>, sor
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder != "" && sortIndexOrder == "" ? [
+                sort: sortOrder !== "" && sortIndexOrder === "" ? [
                     {
                         name: sortOrder
                     },
-                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                ] : sortOrder === "" && sortIndexOrder !== "" ? 
                 [
                     {
                         id: sortIndexOrder
                     }
-                ] : sortFavorited != "" ? [
+                ] : sortFavorited !== "" ? [
                     {
                         favorited: sortFavorited
                     }
@@ -95,16 +95,16 @@ export const searchAndTagVariablesObject = (page: number, tags: Array<Array<stri
             options: {
                 offset: 20 * page,
                 limit: 20,
-                sort: sortOrder != "" && sortIndexOrder == "" ? [
+                sort: sortOrder !== "" && sortIndexOrder === "" ? [
                     {
                         name: sortOrder
                     },
-                ] : sortOrder == "" && sortIndexOrder != "" ? 
+                ] : sortOrder === "" && sortIndexOrder !== "" ? 
                 [
                     {
                         id: sortIndexOrder
                     }
-                ] : sortFavorited != "" ? [
+                ] : sortFavorited !== "" ? [
                     {
                         favorited: sortFavorited
                     }
