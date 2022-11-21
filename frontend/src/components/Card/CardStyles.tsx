@@ -18,34 +18,29 @@ interface PokedexI {
 
 export const CardContainer = styled.div<CardContainerI>`
     width: 80%;
-    height: 190px;
-    background-color: rgba(${(props: any) => props.backgroundColor}, 0.2);
-    border-radius: 8px 8px 0 0;
+    height: fit-content;
+    border-radius: 8px;
     display: grid;
-    grid-template-rows: 1fr 3fr 1fr 1fr;
+    grid-template-rows: auto;
     border: 1px solid rgb(${(props: any) => props.backgroundColor});
     transition: 0.1s;
-
     &:hover {
-        background-color: rgba(${(props: any) => props.backgroundColor}, 0.4);
         cursor: pointer;
     }
-
-    /* @media screen and (min-width: 900px) and (max-width: 1199px) {
-        &:nth-child(10) {
-            grid-column: span 3;
-            width: 26.5%;
-        }
-    } */
 `;
 
-export const InformationContainer = styled.div`
+export const InformationBg = styled.div`
+    width: 100%;
+    background-color: #ffffff;
+    display: grid;
+    grid-template-rows: auto;
+`;
+export const InformationContainer = styled.div<CardContainerI>`
     width: 100%;
     display: grid;
-    padding: 10px;
-    border-radius: 8px 8px 0 0;
     column-gap: 10px;
     justify-content: center;
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.2);
 `;
 
 export const TagIcon = styled.div<TagIconI>`
@@ -54,33 +49,36 @@ export const TagIcon = styled.div<TagIconI>`
     background-color: ${(props) => props.background};
 `;
 
+export const NameTagOuter = styled.div`
+    width: 100%;
+    background-color: #1a1a1a;
+    border-radius: 0px 0px 8px 8px;
+`;
+
 export const NameTag = styled.div<NameTagI>`
     width: 100%;
-    color: black;
+    color: #ffffff;
     font-size: 22px;
     font-weight: 400;
-    height: 100%;
-    background-color: rgb(${(props: any) => props.backgroundColor});
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.1);
     display: flex;
     align-items: center;
-    border-radius: 0 0 8px 8px;
-    border: 1px solid rgb(${(props: any) => props.backgroundColor});
-    transform: translateX(-1px);
     justify-content: center;
+    border-radius: 0px 0px 8px 8px;
 `;
 
 interface TagI {
     backgroundColor: string;
 }
 
-export const Tags = styled.div`
+export const Tags = styled.div<CardContainerI>`
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 14px;
     gap: 30px;
     position: relative;
-    bottom: 7px;
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.2);
 `;
 
 export const Tag = styled.div<TagI>`
@@ -89,14 +87,16 @@ export const Tag = styled.div<TagI>`
     align-items: center;
     min-width: 40px;
     height: 20px;
-    background-color: ${(props: any) => props.backgroundColor};
+    background-color: rgba(15, 10, 10, 0.8);
+    border: 3px solid ${(props: any) => props.backgroundColor};
     font-size: 14px;
     border-radius: 15px;
     gap: 20px;
     padding: 3px 6px 3px 6px;
-    color: black;
+    color: white;
     font-weight: 500;
     font-size: 13px;
+    transform: translateY(-20%);
 `;
 
 export const CardExpandContainer = styled.div<CardContainerI>`
@@ -110,6 +110,7 @@ export const CardExpandContainer = styled.div<CardContainerI>`
     grid-template-rows: repeat(auto);
     transition: 0.1s;
     z-index: 999999;
+    border: 2px solid rgba(${(props: any) => props.backgroundColor});
 
     @media (max-width: 600px) {
         width: 85%;
@@ -164,6 +165,18 @@ export const BackButtonContainer = styled.div`
         }
     }
 `;
+
+export const IndexOuter = styled.div`
+    width: 100%;
+    background-color: #1a1a1a;
+    border-radius: 8px 8px 0 0;
+`;
+
+export const IndexOuterBg = styled.div<PokedexI>`
+    width: 100%;
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.1);
+`;
+
 export const PokeIndex = styled.div<PokedexI>`
     position: relative;
     display: flex;
@@ -172,7 +185,7 @@ export const PokeIndex = styled.div<PokedexI>`
     width: 100%;
     transform: translate(-8px, 3px);
     font-size: 18px;
-    color: rgb(${(props: any) => props.backgroundColor});
+    color: #ffffff;
     font-weight: 400;
 `;
 export const InfoContainerExpanded = styled.div<CardContainerI>`
@@ -190,9 +203,9 @@ export const InfoGrid = styled.div`
 
 export const StatsContainer = styled.div<CardContainerI>`
     font-size: 1.2rem;
-    color: #000000;
+    color: white;
     width: fit-content;
-    background-color: rgb(${(props: any) => props.backgroundColor});
+    background-color: #303030;
     display: grid;
     grid-template-rows: 1fr;
     justify-content: center;
@@ -202,7 +215,6 @@ export const StatsContainer = styled.div<CardContainerI>`
 
 export const StatsText = styled.div`
     font-size: 1.2rem;
-    color: #000000;
     width: 100%;
 `;
 
@@ -228,7 +240,7 @@ export const NameContainer = styled.div<CardContainerI>`
     align-items: center;
     justify-content: center;
     gap: 10px;
-    background-color: rgb(${(props: any) => props.backgroundColor});
+    background-color: rgba(${(props: any) => props.backgroundColor}, 0.4);
 `;
 
 export const NameTagExpanded = styled.div`
@@ -247,7 +259,6 @@ export const StarContainer = styled.div`
     gap: 5px;
 
     .star {
-        color: white;
         &:hover {
             cursor: pointer;
         }
