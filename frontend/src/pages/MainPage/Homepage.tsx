@@ -187,7 +187,7 @@ const MainPage = () => {
                     onKeyDown={handleKeyDownBack}
                     style={{ visibility: page === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage(page > 0 ? page - 1 : 0)}
-                >
+                    >
                     &lt;
                 </div>
                 Page {page + 1}
@@ -197,7 +197,7 @@ const MainPage = () => {
                     onKeyDown={handleKeyDownForward}
                     style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage((page) => (page += 1))}
-                >
+                    >
                     &gt;
                 </div>
             </PageCounter>
@@ -211,9 +211,9 @@ const MainPage = () => {
                 {data?.pokemon?.map((pokemon: any, index: number) => {
                     return (
                         <Card
-                            key={index}
-                            img={pokemon.sprite_url}
-                            index={pokemon.id}
+                        key={index}
+                        img={pokemon.sprite_url}
+                        index={pokemon.id}
                             name={pokemon.name}
                             type_1={pokemon.type_1}
                             type_2={pokemon.type_2}
@@ -225,9 +225,9 @@ const MainPage = () => {
                             favorited={pokemon.favorited}
                             isFavorited={newList?.includes(pokemon.id.toString()) ? true : false}
                             newList={newList}
-                        />
-                    );
-                })}
+                            />
+                            );
+                        })}
                 <UpButton
                     aria-label={"To the top of page"}
                     tabIndex={0}
@@ -238,27 +238,29 @@ const MainPage = () => {
                             behavior: "smooth",
                         })
                     }
-                >
+                    >
                     <img src={up} alt="up" />
                 </UpButton>
                 <PageCounterBottom>
-                    <div
+                    <div 
+                        className="pageBack"
                         aria-label={"Page back"}
                         tabIndex={toggleClick ? 0 : -1}
                         onKeyDown={handleKeyDownBack}
                         style={{ visibility: page === 0 ? "hidden" : "visible" }}
                         onClick={() => setPage(page > 0 ? page - 1 : 0)}
-                    >
+                        >
                         &lt;
                     </div>
                     Page {page + 1}
                     <div
+                        className="pageForward"
                         aria-label={"Page forward"}
                         tabIndex={toggleClick ? 0 : -1}
                         onKeyDown={handleKeyDownForward}
                         style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                         onClick={() => setPage((page) => (page += 1))}
-                    >
+                        >
                         &gt;
                     </div>
                 </PageCounterBottom>
