@@ -49,8 +49,6 @@ import pikachu from "../../assets/Navbar/pokemon/pikachu.svg";
 import squirtle from "../../assets/Navbar/pokemon/squirtle.svg";
 import charmander from "../../assets/Navbar/pokemon/charmander.svg";
 import bulbasaur from "../../assets/Navbar/pokemon/bulbasaur.svg";
-import { keyboard } from "@testing-library/user-event/dist/keyboard";
-import { AnyMxRecord } from "dns";
 
 //Retrieved from https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3
 const list = [
@@ -94,7 +92,6 @@ interface NavbarI {
 }
 
 const Navbar = ({
-  searchTerm,
   setSearchTerm,
   tags,
   setTags,
@@ -102,13 +99,9 @@ const Navbar = ({
   setFilterSearch,
   surpriseMe,
   setSurpriseMe,
-  init,
   setInit,
-  sortOrder,
   setSortOrder,
-  sortIndexOrder,
   setSortIndexOrder,
-  sortFavorited,
   setSortFavorited,
 }: NavbarI) => {
   const [showDropdown, setShowDropdown] = useState<boolean>(false);
@@ -119,10 +112,8 @@ const Navbar = ({
   const [toggleDESC, setToggleDESC] = useState<boolean>(false);
   const [toggleIndexASC, setToggleIndexASC] = useState<boolean>(true);
   const [toggleIndexDESC, setToggleIndexDESC] = useState<boolean>(false);
-  const [colorList, setColorList] = useState<Array<Array<string>>>(list);
+  const [colorList] = useState<Array<Array<string>>>(list);
   const [toggleFavorited, setToggleFavorited] = useState<boolean>(false);
-
-  let search = "";
 
   useEffect(() => {
     decideHeight();
