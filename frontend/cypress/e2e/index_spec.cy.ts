@@ -59,7 +59,10 @@ describe('App E2E', () => {
 
   it ('Test paging', () => {
     // cy.visit('/') //NB! Husk å bytte til VM-location
-    cy.contains('Page 1')
+    cy.wait(1000)
+    cy.scrollTo('bottom') //Scroll to
+    cy.wait(1000)
+    // cy.contains('Page 1')
     cy.get('.pageForward').click()
     cy.contains('Page 2')
     // cy.wait(1000)
