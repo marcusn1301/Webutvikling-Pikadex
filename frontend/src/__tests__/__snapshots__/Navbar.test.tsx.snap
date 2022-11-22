@@ -3,11 +3,12 @@
 exports[`Snapshot test for Navbar 1`] = `
 Array [
   <div
-    className="sc-bcXHqe Gybjo"
+    className="sc-bcXHqe gnYXPE"
     height="172px"
   >
     <div
-      className="sc-gswNZR egMUqU"
+      aria-label="Navbar"
+      className="sc-gswNZR hqSMDk"
       style={
         Object {
           "minHeight": "173px",
@@ -16,16 +17,22 @@ Array [
       }
     >
       <div
-        className="sc-dkrFOg icdcLv"
+        className="sc-dkrFOg DRasr"
       >
         <div
-          className="sc-hLBbgP kFvYYM"
+          className="sc-hLBbgP bpqExl"
+          onClick={[Function]}
+          onKeyDown={[Function]}
+          tabIndex={0}
         >
           <img
-            className="sc-eDvSVe dIDjLj"
+            aria-label="Pikadex logo"
+            className="sc-eDvSVe hXVQL"
             src="Logo.svg"
           />
-          <div>
+          <div
+            aria-label="Pikadex"
+          >
             Pikadex
           </div>
         </div>
@@ -41,7 +48,7 @@ Array [
         }
       />
       <div
-        className="sc-iJnaPW cuGxOM"
+        className="sc-iJnaPW kmYkko"
         style={
           Object {
             "display": "block",
@@ -70,14 +77,14 @@ Array [
         />
       </div>
       <img
-        className="sc-gKPRtg dwhDdR"
+        className="sc-gKPRtg jLQWgF"
         src="Pokeball.svg"
       />
       <div
-        className="sc-iBYQkv jzCrYC"
+        className="sc-iBYQkv lpkjnG"
       >
         <div
-          className="sc-ftTHYK bcWsZC"
+          className="sc-ftTHYK jUJFST"
         >
           <div
             className="filler"
@@ -92,15 +99,18 @@ Array [
                 className="searchbar"
                 onChange={[Function]}
                 placeholder="Search by name or index"
+                tabIndex={0}
                 type="text"
               />
             </form>
             <svg
+              aria-label="Search button"
               ariaHidden="true"
               className="searchIcon"
               fill="currentColor"
               height={25}
               onClick={[Function]}
+              onKeyDown={[Function]}
               stroke="currentColor"
               strokeWidth="0"
               style={
@@ -108,6 +118,7 @@ Array [
                   "color": undefined,
                 }
               }
+              tabIndex={0}
               viewBox="0 0 24 24"
               width={25}
               xmlns="http://www.w3.org/2000/svg"
@@ -120,47 +131,53 @@ Array [
             </svg>
           </div>
           <div
-            className="sc-pyfCe hBdHyt"
+            className="sc-pyfCe iVLzIl"
             onClick={[Function]}
           >
             <div
-              className="sc-jrcTuL gXuwBj"
+              aria-label="Surprise me button"
+              className="sc-jrcTuL glYgYC"
+              onKeyDown={[Function]}
+              tabIndex={0}
             >
               <div
-                className="sc-kDvujY bBbyqe"
+                className="sc-kDvujY iAZqnG"
               >
                 Surprise me!
               </div>
               <img
-                className="sc-ipEyDJ iGiXAa"
+                className="sc-ipEyDJ jklogQ pokeballBtn"
                 src="pokeball_icon.svg"
               />
             </div>
           </div>
         </div>
         <div
-          className="sc-csuSiG eHinTQ"
+          className="sc-csuSiG emayJc"
         />
       </div>
     </div>
     <div
-      className="sc-hBxehG YAnpd"
+      className="sc-hBxehG hIuACp"
     >
       <img
-        className="sc-gikAfH ijcsKr navbarDropdown"
+        aria-label="Toggle navbar dropdown"
+        className="sc-gikAfH hBJWua navbarDropdown"
         onClick={[Function]}
+        onKeyDown={[Function]}
         src="navbarEdge.svg"
+        tabIndex={0}
       />
     </div>
   </div>,
   <img
-    className="sc-ezOQGI dOxhFP"
+    className="sc-ezOQGI cVhwjX"
     height="70vh"
     offset="1px"
     src="leftEdge.svg"
   />,
   <img
-    className="sc-bYMpWt ckrZjW"
+    className="sc-bYMpWt ekOfpy"
     height="70vh"
     offset="1px"
     src="rightEdge.svg"

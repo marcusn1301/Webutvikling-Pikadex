@@ -1,11 +1,7 @@
-import React from 'react';
-import {render, screen} from '@testing-library/react';
 import renderer from "react-test-renderer";
+import RandomButton from "../components/RandomButton/RandomButton";
 
-import RandomButton from '../components/RandomButton/RandomButton';
-
-test('Snapshot test for Navbar', () => {
-    const container = renderer.create(<RandomButton />);
-    expect(container).toMatchSnapshot();
+test("Snapshot test for Navbar", () => {
+  const container = renderer.create(<RandomButton />);
+  expect(container).toMatchSnapshot();
 });
-
