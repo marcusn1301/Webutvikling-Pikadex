@@ -22,6 +22,8 @@ import {
 
 import { CardGrid, FooterEdge, PageCounter, SadPika, UpButton, PageCounterBottom } from "./HomepageStyles";
 
+import { isExpandedGlobal } from "../..";
+
 type Dispatch<A> = (value: A) => void;
 
 const MainPage = () => {
@@ -56,14 +58,7 @@ const MainPage = () => {
     let searchVariables: object = searchVariablesObject(page, searchTerm, sortOrder, sortIndexOrder, sortFavorited);
     let noVariables: object = noVariablesObject(page, sortOrder, sortIndexOrder, sortFavorited);
     let tagVariables: object = tagVariablesObject(page, tags, sortOrder, sortIndexOrder, sortFavorited);
-    let searchAndTagVariables = searchAndTagVariablesObject(
-        page,
-        tags,
-        searchTerm,
-        sortOrder,
-        sortIndexOrder,
-        sortFavorited
-    );
+    let searchAndTagVariables = searchAndTagVariablesObject(page, tags, searchTerm, sortOrder, sortIndexOrder, sortFavorited);
 
     // State for saving the current query variables
     const [variables, setVariables] = useState(searchVariables);
@@ -187,7 +182,7 @@ const MainPage = () => {
                     onKeyDown={handleKeyDownBack}
                     style={{ visibility: page === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage(page > 0 ? page - 1 : 0)}
-                    >
+                >
                     &lt;
                 </div>
                 Page {page + 1}
@@ -197,7 +192,7 @@ const MainPage = () => {
                     onKeyDown={handleKeyDownForward}
                     style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage((page) => (page += 1))}
-                    >
+                >
                     &gt;
                 </div>
             </PageCounter>
@@ -211,9 +206,9 @@ const MainPage = () => {
                 {data?.pokemon?.map((pokemon: any, index: number) => {
                     return (
                         <Card
-                        key={index}
-                        img={pokemon.sprite_url}
-                        index={pokemon.id}
+                            key={index}
+                            img={pokemon.sprite_url}
+                            index={pokemon.id}
                             name={pokemon.name}
                             type_1={pokemon.type_1}
                             type_2={pokemon.type_2}
@@ -225,12 +220,12 @@ const MainPage = () => {
                             favorited={pokemon.favorited}
                             isFavorited={newList?.includes(pokemon.id.toString()) ? true : false}
                             newList={newList}
-                            />
-                            );
-                        })}
+                        />
+                    );
+                })}
                 <UpButton
                     aria-label={"To the top of page"}
-                    tabIndex={0}
+                    tabIndex={toggleClick ? 0 : -1}
                     onKeyDown={handleKeyDownUp}
                     onClick={() =>
                         window.scrollTo({
@@ -238,18 +233,18 @@ const MainPage = () => {
                             behavior: "smooth",
                         })
                     }
-                    >
+                >
                     <img src={up} alt="up" />
                 </UpButton>
                 <PageCounterBottom>
-                    <div 
+                    <div
                         className="pageBack"
                         aria-label={"Page back"}
                         tabIndex={toggleClick ? 0 : -1}
                         onKeyDown={handleKeyDownBack}
                         style={{ visibility: page === 0 ? "hidden" : "visible" }}
                         onClick={() => setPage(page > 0 ? page - 1 : 0)}
-                        >
+                    >
                         &lt;
                     </div>
                     Page {page + 1}
@@ -260,7 +255,7 @@ const MainPage = () => {
                         onKeyDown={handleKeyDownForward}
                         style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                         onClick={() => setPage((page) => (page += 1))}
-                        >
+                    >
                         &gt;
                     </div>
                 </PageCounterBottom>

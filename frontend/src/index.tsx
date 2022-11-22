@@ -3,13 +3,15 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 import App from "./App";
 
-import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider, makeVar } from "@apollo/client";
 
 //Connect apollo to the pokeapi endpoint
 const client = new ApolloClient({
     uri: "http://localhost:4000/",
     cache: new InMemoryCache(),
 });
+
+export const isExpandedGlobal = makeVar<boolean>(false);
 
 // //Connect apollo to the pokeapi endpoint
 /* const client = new ApolloClient({
