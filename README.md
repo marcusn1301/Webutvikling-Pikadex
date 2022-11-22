@@ -30,18 +30,22 @@ $ npm start # Starter backend-serveren
 
 ## TESTING(?)
 
+yup
+
 ## Teknologier
 
 Prosjektet er delt opp i en klient (frontend) og en server (backend) side. Disse er separert i hver sin mappe. Klienten er en _React_-webapp og serveren er en _Node_ backend, begge er skrevet i Typescript.
-All dataen blir lagret i en Neo4j-database - dette består hovedsakelig av antall likes hver pokemon har. Vi bruker også localstorage for ...
+All dataen blir lagret i en Neo4j-database. For å hente dataen fra databasen, og vise den på klientsiden, bruker vi Apollo. Vi har ikke et innloggingssystem, så vi bruker derfor localstorage til å huske på om en bruker allerede har likt en pokemon. Hvis en bruker ikke allerede har likt en pokemon, vil det bli lagt til en til like på pokemonen i databasen.
 
-### Sortering
+### Sortering og filtrering
 
-Vi implementerte sorteringen, og det er nå mulig å sortere på navn (alfabetisk), ID (numerisk), og pokemon med flest favoritter.
+Vi implementerte sorteringen, og det er nå mulig å sortere på navn (alfabetisk), ID (numerisk), og pokemon med flest favoritter. I applikasjonen vår kan man filtrere pokemon på typen deres, og slik som det er i spillet kan hver pokemon ha en primær og sekundær type. Dette betyr at når man filtrerer på typen er rekkefølgen på typene viktig. For eksempel hvis en pokemon har typene <b>Water</b> og <b>Poison</b>, og brukeren filtrerer på <b>Poison</b> og <b>Water</b>, så vil den ikke dukke opp med mindre brukeren filtrerer på <b>Water</b> og <b>Poison</b>
 
 ### Valg av teknologier
 
 #### Apollo Client
+
+Apollo client blir brukt til å cache all pokemon-dataen som blir hentet ut til klientsiden. Så dersom en pokemon blir hentet fra databasen, vil den ikke trenge å bli hentet igjen senere. Dette sparer antall kall vi gjør til databasen og gjør applikasjonen vår mer effektiv.
 
 #### Neo4j
 
