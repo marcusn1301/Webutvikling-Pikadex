@@ -74,6 +74,7 @@ const MainPage = () => {
     // When the user clicks on search, set the mode to the search term
     useEffect(() => {
         setPage(0);
+        setToggleClick(true);
         decideWhichQueryToUse({
             tags,
             searchTerm,
@@ -91,6 +92,7 @@ const MainPage = () => {
     }, [searchTerm, filterSearch]);
 
     const handleSurpriseMe = () => {
+        setToggleClick(true);
         let fetchAmount = 20;
         const randIntList = [];
 
