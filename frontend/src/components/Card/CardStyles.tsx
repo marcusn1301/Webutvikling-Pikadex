@@ -18,6 +18,7 @@ interface PokedexI {
 
 export const CardContainer = styled.div<CardContainerI>`
     width: 80%;
+    min-height: 195px;
     height: fit-content;
     border-radius: 8px;
     display: grid;
@@ -31,6 +32,7 @@ export const CardContainer = styled.div<CardContainerI>`
 
 export const InformationBg = styled.div<CardContainerI>`
     width: 100%;
+    min-height: 135px;
     transition: 0.15s ease-in-out;
     background-color: #ffffff;
     display: grid;
@@ -41,6 +43,7 @@ export const InformationBg = styled.div<CardContainerI>`
     }
 `;
 export const InformationContainer = styled.div<CardContainerI>`
+    min-height: 103px;
     width: 100%;
     display: grid;
     column-gap: 10px;
@@ -77,6 +80,7 @@ interface TagI {
 }
 
 export const Tags = styled.div<CardContainerI>`
+    min-height: 32px;
     display: flex;
     justify-content: center;
     align-items: center;
