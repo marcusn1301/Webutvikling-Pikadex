@@ -86,7 +86,7 @@ Vi har laget tester for å sjekke om siden lastes inn riktig. Søkefunksjonalite
 ```sh
 $ cd frontend               # Bytte til frontend mappa
 
-$ npm run cypress:open      # Kjører alle snapshot-testene
+$ npm run cypress:open      # Kjører Cypress automatisk testing
 ```
 
 ![Cypress](e2e_test.png)

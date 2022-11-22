@@ -527,12 +527,6 @@ const Navbar = ({
                               handleKeyDownType(e, item, tags, index)
                             }
                             backgroundColor={item[1]}
-                            /* style={{
-                                                            border:
-                                                                item[2] === "picked"
-                                                                    ? "2px solid black"
-                                                                    : "2px solid transparent",
-                                                        }} */
                             key={index}
                             onClick={() => addTag(item, tags, index)}
                             aria-label={item[0]}
