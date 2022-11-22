@@ -36,7 +36,6 @@ const MainPage = () => {
     const [sortOrder, setSortOrder] = useState<string>("");
     const [sortIndexOrder, setSortIndexOrder] = useState<string>("");
     const [sortFavorited, setSortFavorited] = useState<string>("");
-    const [BottomPagination, setBottomPagination] = useState<boolean>(false);
 
     const [init, setInit] = useState<boolean>(true);
 
@@ -74,7 +73,6 @@ const MainPage = () => {
 
     // When the user clicks on search, set the mode to the search term
     useEffect(() => {
-        setBottomPagination(false);
         setPage(0);
         decideWhichQueryToUse({
             tags,
@@ -133,13 +131,6 @@ const MainPage = () => {
             sortIndexOrder,
             sortFavorited,
         });
-    }, [page]);
-
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setBottomPagination(true);
-        }, 2000);
-        return () => clearTimeout(timer);
     }, [page]);
 
     //Handles enter press to top
