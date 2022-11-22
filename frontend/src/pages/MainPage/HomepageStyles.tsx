@@ -7,11 +7,12 @@ export const CardGrid = styled.div`
     z-index: -1;
     top: 240px;
     width: 90%;
+    min-height: 90vh;
     height: fit-content;
     display: grid;
     grid-row-gap: 50px;
     justify-items: center;
-    padding-bottom: 50px;
+    padding-bottom: 80px;
 
     @media screen and (max-width: 500px) {
         grid-template-columns: repeat(1fr);
@@ -74,6 +75,34 @@ export const PageCounter = styled.div`
     color: rgb(255, 255, 255);
     z-index: -99999999999999999999;
 
+    div {
+        font-weight: 600;
+        font-size: 20px;
+        width: 30px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &:hover {
+            cursor: pointer;
+            color: rgb(200, 200, 200);
+        }
+    }
+`;
+
+export const PageCounterBottom = styled.div`
+    position: absolute;
+    bottom: 0px;
+    left: 50%;
+    font-size: 16px;
+    white-space: nowrap;
+    display: flex;
+    gap: 15px;
+    transform: translate(-50%);
+    align-items: center;
+    color: rgb(255, 255, 255);
+    z-index: -99999999999999999999;
+    padding-bottom: 35px;
     div {
         font-weight: 600;
         font-size: 20px;
