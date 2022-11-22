@@ -74,6 +74,7 @@ const MainPage = () => {
     // When the user clicks on search, set the mode to the search term
     useEffect(() => {
         setPage(0);
+        setToggleClick(true);
         decideWhichQueryToUse({
             tags,
             searchTerm,
@@ -91,6 +92,7 @@ const MainPage = () => {
     }, [searchTerm, filterSearch]);
 
     const handleSurpriseMe = () => {
+        setToggleClick(true);
         let fetchAmount = 20;
         const randIntList = [];
 
@@ -181,7 +183,7 @@ const MainPage = () => {
             <PageCounter>
                 <div
                     aria-label={"Page back"}
-                    tabIndex={0}
+                    tabIndex={toggleClick ? 0 : -1}
                     onKeyDown={handleKeyDownBack}
                     style={{ visibility: page === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage(page > 0 ? page - 1 : 0)}
@@ -191,7 +193,7 @@ const MainPage = () => {
                 Page {page + 1}
                 <div
                     aria-label={"Page forward"}
-                    tabIndex={0}
+                    tabIndex={toggleClick ? 0 : -1}
                     onKeyDown={handleKeyDownForward}
                     style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                     onClick={() => setPage((page) => (page += 1))}
@@ -242,7 +244,7 @@ const MainPage = () => {
                 <PageCounterBottom>
                     <div
                         aria-label={"Page back"}
-                        tabIndex={0}
+                        tabIndex={toggleClick ? 0 : -1}
                         onKeyDown={handleKeyDownBack}
                         style={{ visibility: page === 0 ? "hidden" : "visible" }}
                         onClick={() => setPage(page > 0 ? page - 1 : 0)}
@@ -252,7 +254,7 @@ const MainPage = () => {
                     Page {page + 1}
                     <div
                         aria-label={"Page forward"}
-                        tabIndex={0}
+                        tabIndex={toggleClick ? 0 : -1}
                         onKeyDown={handleKeyDownForward}
                         style={{ visibility: data?.pokemon?.length === 0 ? "hidden" : "visible" }}
                         onClick={() => setPage((page) => (page += 1))}
