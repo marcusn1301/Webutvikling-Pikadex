@@ -67,21 +67,7 @@ const UPDATE_FAVORITES = gql`
     }
 `;
 
-const Card = ({
-    index,
-    img,
-    name,
-    type_1,
-    type_2,
-    height,
-    weight,
-    exp,
-    toggleClick,
-    setToggleClick,
-    favorited,
-    isFavorited,
-    newList,
-}: Pokemon) => {
+const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleClick, setToggleClick, favorited, isFavorited, newList }: Pokemon) => {
     const types: Array<string> = [type_1, type_2];
     const [isExpanded, setIsExpanded] = useState(false);
     const [updateFavorite] = useMutation(UPDATE_FAVORITES);
@@ -162,6 +148,14 @@ const Card = ({
         }
     };
 
+    // If the user clicks esc, then close the popup
+    document.addEventListener("keydown", (event) => {
+        if (isExpanded && event.key === "Escape") {
+            setIsExpanded(false);
+            setToggleClick(true);
+        }
+    });
+
     // Handles enter on card
     const handleKeyDownCard = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
@@ -195,11 +189,7 @@ const Card = ({
                 >
                     <IndexOuter>
                         <IndexOuterBg backgroundColor={handleTypeColor()}>
-                            <PokeIndex
-                                className="pokeIndex"
-                                backgroundColor={handleTypeColor()}
-                                aria-label={checkIndex(index)}
-                            >
+                            <PokeIndex className="pokeIndex" backgroundColor={handleTypeColor()} aria-label={checkIndex(index)}>
                                 {checkIndex(index)}
                             </PokeIndex>
                         </IndexOuterBg>
@@ -216,9 +206,7 @@ const Card = ({
                                     return (
                                         <Tag
                                             aria-label={type}
-                                            backgroundColor={
-                                                pokemonTypesColors[type as keyof typeof pokemonTypesColors]
-                                            }
+                                            backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]}
                                             key={index}
                                         >
                                             {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -229,11 +217,7 @@ const Card = ({
                         </Tags>
                     </InformationBg>
                     <NameTagOuter>
-                        <NameTag
-                            aria-label={name.charAt(0).toUpperCase() + name.slice(1)}
-                            className="nameTag"
-                            backgroundColor={handleTypeColor()}
-                        >
+                        <NameTag aria-label={name.charAt(0).toUpperCase() + name.slice(1)} className="nameTag" backgroundColor={handleTypeColor()}>
                             {name.charAt(0).toUpperCase() + name.slice(1)}
                         </NameTag>
                     </NameTagOuter>
@@ -277,9 +261,7 @@ const Card = ({
                                         return (
                                             <Tag
                                                 aria-label={type}
-                                                backgroundColor={
-                                                    pokemonTypesColors[type as keyof typeof pokemonTypesColors]
-                                                }
+                                                backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]}
                                                 key={index}
                                             >
                                                 {type.charAt(0).toUpperCase() + type.slice(1)}
