@@ -275,9 +275,6 @@ export const PokeballBoxSurpriseMe = styled.div`
             transform: rotate(-360deg);
         }
     }
-    @media (max-width: 950px) {
-        background-color: transparent;
-    }
 `;
 
 export const PokeballBoxSurpriseMeText = styled.div`
