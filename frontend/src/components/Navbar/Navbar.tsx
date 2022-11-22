@@ -50,6 +50,7 @@ import squirtle from "../../assets/Navbar/pokemon/squirtle.svg";
 import charmander from "../../assets/Navbar/pokemon/charmander.svg";
 import bulbasaur from "../../assets/Navbar/pokemon/bulbasaur.svg";
 import { keyboard } from "@testing-library/user-event/dist/keyboard";
+import { AnyMxRecord } from "dns";
 
 //Retrieved from https://gist.github.com/apaleslimghost/0d25ec801ca4fc43317bcff298af43c3
 const list = [
@@ -350,16 +351,16 @@ const Navbar = ({
     };
 
     //Handles enter on type
-    const handleKeyDownType = (event: { key: string }) => {
+    const handleKeyDownType = (event: { key: string }, tag: Array<string>, tagList: Array<Array<string>>, index: number) => {
         if (event.key === "Enter") {
-            console.log("i tried");
+            addTag(tag, tagList, index);
         }
     };
 
     //Handles enter on type remove
-    const handleKeyDownTypeRemove = (event: { key: string }) => {
+    const handleKeyDownTypeRemove = (event: { key: string }, tagTerm: string, tagList: Array<Array<string>>) => {
         if (event.key === "Enter") {
-            console.log("i tried");
+            removeTag(tagTerm, tagList);
         }
     };
 
@@ -415,12 +416,7 @@ const Navbar = ({
                         </LogoTextbox>
                     </LogoContainer>
                     {!showDropdown && (
-                        <img
-                            src={pikachu}
-                            alt="pikachu"
-                            className="pikachu"
-                            style={{ display: !small || showDropdown ? "block" : "none" }}
-                        />
+                        <img src={pikachu} alt="pikachu" className="pikachu" style={{ display: !small || showDropdown ? "block" : "none" }} />
                     )}
                     {!showDropdown && (
                         <PokemonContainer style={{ display: !small || showDropdown ? "block" : "none" }}>
@@ -465,11 +461,7 @@ const Navbar = ({
                                         setInit(false);
                                     }}
                                 >
-                                    <PokeballBoxSurpriseMe
-                                        aria-label={"Surprise me button"}
-                                        tabIndex={0}
-                                        onKeyDown={handleKeyDownRandom}
-                                    >
+                                    <PokeballBoxSurpriseMe aria-label={"Surprise me button"} tabIndex={0} onKeyDown={handleKeyDownRandom}>
                                         <PokeballBoxSurpriseMeText>Surprise me!</PokeballBoxSurpriseMeText>
                                         <PokeBallBtn src={pokeballIcon} className="pokeballBtn" />
                                     </PokeballBoxSurpriseMe>
@@ -482,7 +474,7 @@ const Navbar = ({
                                     return (
                                         <FilterTags
                                             tabIndex={0}
-                                            onKeyDown={handleKeyDownTypeRemove}
+                                            onKeyDown={(e) => handleKeyDownTypeRemove(e, tag[0], tags)}
                                             backgroundColor={tag[1]}
                                             key={index}
                                             onClick={() => removeTag(tag[0], tags)}
@@ -508,7 +500,7 @@ const Navbar = ({
                                                 {colorList.map((item: Array<string>, index: number) => (
                                                     <Tag
                                                         tabIndex={0}
-                                                        onKeyDown={handleKeyDownType}
+                                                        onKeyDown={(e) => handleKeyDownType(e, item, tags, index)}
                                                         backgroundColor={item[1]}
                                                         /* style={{
                                                             border:
