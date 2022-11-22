@@ -201,6 +201,7 @@ export const PokeIndex = styled.div<PokedexI>`
 export const InfoContainerExpanded = styled.div<CardContainerI>`
     width: 100%;
     background-color: rgba(${(props: any) => props.backgroundColor}, 0.2);
+    z-index: 50;
 `;
 export const InfoGrid = styled.div`
     display: grid;
@@ -284,4 +285,13 @@ export const StarContainer = styled.div`
 export const Favorited = styled.div`
     color: white;
     font-weight: 500;
+`;
+
+export const CardOverlay = styled.div`
+    position: fixed;
+    top: 0;
+    height: 100vh;
+    width: 100vw;
+    z-index: 49;
+    background-color: rgba(0, 0, 0, 0.6);
 `;

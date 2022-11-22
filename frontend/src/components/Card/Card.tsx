@@ -25,6 +25,7 @@ import {
     IndexOuter,
     IndexOuterBg,
     InformationBg,
+    CardOverlay,
 } from "./CardStyles";
 
 import { pokemonTypesColors } from "../../types/mappings";
@@ -306,6 +307,7 @@ const Card = ({
                     </NameContainer>
                 </CardExpandContainer>
             )}
+            {isExpanded ? <CardOverlay /> : <></>}
         </>
     );
 };
