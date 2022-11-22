@@ -316,7 +316,7 @@ const Card = ({
                     </NameContainer>
                 </CardExpandContainer>
             )}
-            {isExpanded ? <CardOverlay /> : <></>}
+            {isExpanded ? <CardOverlay onClick={() => handleRemovePopup(!isExpanded)} /> : <></>}
         </>
     );
 };
