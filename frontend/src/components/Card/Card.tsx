@@ -68,7 +68,21 @@ const UPDATE_FAVORITES = gql`
     }
 `;
 
-const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleClick, setToggleClick, favorited, isFavorited, newList }: Pokemon) => {
+const Card = ({
+    index,
+    img,
+    name,
+    type_1,
+    type_2,
+    height,
+    weight,
+    exp,
+    toggleClick,
+    setToggleClick,
+    favorited,
+    isFavorited,
+    newList,
+}: Pokemon) => {
     const types: Array<string> = [type_1, type_2];
     const [isExpanded, setIsExpanded] = useState(false);
     const [updateFavorite] = useMutation(UPDATE_FAVORITES);
@@ -182,7 +196,8 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
         <>
             {!isExpanded ? (
                 <CardContainer
-                    tabIndex={0}
+                    //Removes tab index from the other cards if a card is expanded
+                    tabIndex={isExpanded ? 0 : -1}
                     onKeyDown={handleKeyDownCard}
                     className="cardContainer"
                     onClick={() => handlePopup(!isExpanded)}
@@ -190,7 +205,11 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                 >
                     <IndexOuter>
                         <IndexOuterBg backgroundColor={handleTypeColor()}>
-                            <PokeIndex className="pokeIndex" backgroundColor={handleTypeColor()} aria-label={checkIndex(index)}>
+                            <PokeIndex
+                                className="pokeIndex"
+                                backgroundColor={handleTypeColor()}
+                                aria-label={checkIndex(index)}
+                            >
                                 {checkIndex(index)}
                             </PokeIndex>
                         </IndexOuterBg>
@@ -207,7 +226,9 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                                     return (
                                         <Tag
                                             aria-label={type}
-                                            backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]}
+                                            backgroundColor={
+                                                pokemonTypesColors[type as keyof typeof pokemonTypesColors]
+                                            }
                                             key={index}
                                         >
                                             {type.charAt(0).toUpperCase() + type.slice(1)}
@@ -218,7 +239,11 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                         </Tags>
                     </InformationBg>
                     <NameTagOuter>
-                        <NameTag aria-label={name.charAt(0).toUpperCase() + name.slice(1)} className="nameTag" backgroundColor={handleTypeColor()}>
+                        <NameTag
+                            aria-label={name.charAt(0).toUpperCase() + name.slice(1)}
+                            className="nameTag"
+                            backgroundColor={handleTypeColor()}
+                        >
                             {name.charAt(0).toUpperCase() + name.slice(1)}
                         </NameTag>
                     </NameTagOuter>
@@ -262,7 +287,9 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
                                         return (
                                             <Tag
                                                 aria-label={type}
-                                                backgroundColor={pokemonTypesColors[type as keyof typeof pokemonTypesColors]}
+                                                backgroundColor={
+                                                    pokemonTypesColors[type as keyof typeof pokemonTypesColors]
+                                                }
                                                 key={index}
                                             >
                                                 {type.charAt(0).toUpperCase() + type.slice(1)}
