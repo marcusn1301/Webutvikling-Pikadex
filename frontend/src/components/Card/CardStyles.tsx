@@ -31,12 +31,13 @@ export const CardContainer = styled.div<CardContainerI>`
 
 export const InformationBg = styled.div<CardContainerI>`
     width: 100%;
+    transition: 0.15s ease-in-out;
     background-color: #ffffff;
     display: grid;
     grid-template-rows: auto;
     &:hover {
         background-color: rgba(${(props: any) => props.backgroundColor}, 0.5);
-        transition: 0.3s;
+        transition: 0.15s ease-in-out;
     }
 `;
 export const InformationContainer = styled.div<CardContainerI>`
