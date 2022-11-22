@@ -25,6 +25,7 @@ import {
     IndexOuter,
     IndexOuterBg,
     InformationBg,
+    CardOverlay,
 } from "./CardStyles";
 
 import { pokemonTypesColors } from "../../types/mappings";
@@ -162,6 +163,14 @@ const Card = ({
         }
     };
 
+    // If the user clicks esc, then close the popup
+    document.addEventListener("keydown", (event) => {
+        if (isExpanded && event.key === "Escape") {
+            setIsExpanded(false);
+            setToggleClick(true);
+        }
+    });
+
     // Handles enter on card
     const handleKeyDownCard = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {
@@ -187,7 +196,8 @@ const Card = ({
         <>
             {!isExpanded ? (
                 <CardContainer
-                    tabIndex={0}
+                    //Removes tab index from the other cards if a card is expanded
+                    tabIndex={isExpanded ? 0 : -1}
                     onKeyDown={handleKeyDownCard}
                     className="cardContainer"
                     onClick={() => handlePopup(!isExpanded)}
@@ -306,6 +316,7 @@ const Card = ({
                     </NameContainer>
                 </CardExpandContainer>
             )}
+            {isExpanded ? <CardOverlay onClick={() => handleRemovePopup(!isExpanded)} /> : <></>}
         </>
     );
 };
