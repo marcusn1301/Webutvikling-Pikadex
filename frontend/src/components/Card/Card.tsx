@@ -153,14 +153,6 @@ const Card = ({ index, img, name, type_1, type_2, height, weight, exp, toggleCli
         }
     };
 
-    // If the user clicks esc, then close the popup
-    document.addEventListener("keydown", (event) => {
-        if (isExpanded && event.key === "Escape") {
-            setIsExpanded(false);
-            setToggleClick(true);
-        }
-    });
-
     // Handles enter on card
     const handleKeyDownCard = (event: { keyCode: number }) => {
         if (event.keyCode === 13) {

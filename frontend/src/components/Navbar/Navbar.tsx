@@ -395,6 +395,11 @@ const Navbar = ({
     // Checks if the element should be tabable or not
     const checkIfTabable = isExpandedGlobal() ? -1 : 0;
 
+    const updateSurpriseMe = () => {
+        setSurpriseMe(!surpriseMe);
+        setInit(false);
+    };
+
     return (
         <>
             <NavbarOuter transition={small ? true : false} height={checkHeight()}>
@@ -457,12 +462,7 @@ const Navbar = ({
                                     />
                                 </div>
                                 {/* Grid column 2 */}
-                                <PokeBallBtnContainer
-                                    onClick={() => {
-                                        setSurpriseMe(!surpriseMe);
-                                        setInit(false);
-                                    }}
-                                >
+                                <PokeBallBtnContainer onClick={() => (isExpandedGlobal() ? "" : updateSurpriseMe())}>
                                     <PokeballBoxSurpriseMe
                                         hover={isExpandedGlobal() ? false : true}
                                         aria-label={"Surprise me button"}
