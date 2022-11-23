@@ -112,7 +112,7 @@ Mesteparten av CSS-en til siden er skrevet fra bunnen av, men vi har brukt noe t
 
 Apollo client blir brukt til å cache all pokemon-dataen som blir hentet ut til klientsiden. Så dersom en pokemon blir hentet fra databasen, vil den ikke trenge å bli hentet igjen senere. Dette sparer antall kall vi gjør til databasen og gjør applikasjonen vår mer effektiv.
 
-Global state management er også innført gjennom Apollo Client. Vår webapp bruker dette for å skille mellom tilstandene - åpnet og lukket kort. Vi bruker dette for å hindre brukeren i ha muligheten til å "tab-indeksere" seg gjennom de andre Pokemonen ([se delen om universell utforming](#universell-utforming-/-web-accessibility)), når man er inne på et kort.
+Global state management er også innført gjennom Apollo Client. Vår webapp bruker dette for å skille mellom tilstandene - åpnet og lukket kort. Vi bruker dette for å hindre brukeren i ha muligheten til å interagere Navbaren ([se delen om universell utforming](#universell-utforming-/-web-accessibility)), når man er inne på et kort.
 
 #### Neo4j
 
