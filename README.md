@@ -38,7 +38,7 @@ $ npm start         # Starter backend-serveren
 
 ## Testing
 
-Nettsiden har blitt testet i følgende nettlesere: Google Chrome, Mozilla Firfox and Microsoft Edge. Og på følgende enheter:
+Nettsiden har blitt testet i følgende nettlesere: Google Chrome, Mozilla Firefox and Microsoft Edge. Og på følgende enheter:
 
 #### Desktops
 
@@ -102,7 +102,9 @@ Vi implementerte sorteringen, og det er nå mulig å sortere på navn (alfabetis
 ## Teknologier
 
 Prosjektet er delt opp i en klient (frontend) og en server (backend) side. Disse er separert i hver sin mappe. Klienten er en _React_-webapp og serveren er en _Node_ backend, begge er skrevet i Typescript.
-All dataen blir lagret i en Neo4j-database. For å hente dataen fra databasen, og vise den på klientsiden, bruker vi Apollo. Vi har ikke et innloggingssystem, så vi bruker derfor localstorage til å huske på om en bruker allerede har likt en pokemon. Hvis en bruker ikke allerede har likt en pokemon, vil det bli lagt til en til like på pokemonen i databasen.
+All dataen blir lagret i en Neo4j-database. For å hente dataen fra databasen, og vise den på klientsiden, bruker vi Apollo. Det er ikke implementert et innloggingssystem, så vi bruker derfor localstorage til å huske på om en bruker allerede har likt en pokemon. Hvis en bruker ikke allerede har likt en pokemon, vil det bli lagt til en til like på pokemonen i databasen.
+
+Mesteparten av CSS-en til siden er skrevet fra bunnen av, men vi har brukt noe tredjepartskomponenter - hovedsakelig React Icons.
 
 ### Valg av teknologier
 
@@ -110,7 +112,11 @@ All dataen blir lagret i en Neo4j-database. For å hente dataen fra databasen, o
 
 Apollo client blir brukt til å cache all pokemon-dataen som blir hentet ut til klientsiden. Så dersom en pokemon blir hentet fra databasen, vil den ikke trenge å bli hentet igjen senere. Dette sparer antall kall vi gjør til databasen og gjør applikasjonen vår mer effektiv.
 
+Global state management er også innført gjennom Apollo Client. Vår webapp bruker dette for å skille mellom tilstandene - åpnet og lukket kort. Vi bruker dette for å hindre brukeren i ha muligheten til å "tab-indeksere" seg gjennom de andre Pokemonen ([se delen om universell utforming](#universell-utforming-/-web-accessibility)), når man er inne på et kort.
+
 #### Neo4j
+
+Neo4j Graph Database er det valgte databasesystemet vårt. Hovedårsaken til at vi valgte Neo4j framfor MongoDB var at vi ønsket å lære mer om dette databasesystemet da enkelte på gruppa allerede hadde vært borti sistnevnte. Riktignok ville nok det naturlige valget vært MongoDB, da vi ikke hadde et stort behov for relasjoner.
 
 ## Universell utforming / web accessibility
 
